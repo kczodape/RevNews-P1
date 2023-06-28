@@ -11,6 +11,7 @@ import { UserComponent } from './components/user/user.component';
 import { SaveComponent } from './components/save/save.component';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     UserComponent,
     SaveComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, GraphQLModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, GraphQLModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],
 })

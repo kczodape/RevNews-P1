@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-
+  email:string | any;
+  password:string | any;
+  login():void{
+    
+  }
 }
