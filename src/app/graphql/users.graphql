@@ -1,0 +1,40 @@
+type Users{
+    id: ID!
+    firstName: string!
+    lastName:string!
+    contactNumber:number!
+    age:number!
+    country:string!
+    email:string!
+    password:string!
+}
+
+type Query{
+    getUser(id: ID!): Users
+    getAllUsers:[User!]!
+}
+
+type Mutation{
+    createUser(
+        firstName: string!
+        lastName:string!
+        contactNumber:number!
+        age:number!
+        country:string!
+        email:string!
+        password:string!
+    ): User!
+
+    updateUser(
+        id: ID!
+        firstName: string
+        lastName:string
+        contactNumber:number
+        age:number
+        country:string
+        email:string
+        password:string
+    ): User!
+
+    deleteUser(id:ID!):Boolean!
+}

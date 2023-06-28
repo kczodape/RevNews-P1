@@ -1,1 +1,20 @@
-<p>login works!</p>
+<div class="head">
+  <h1>Welcome to Hot News</h1>
+</div>
+
+<div class="login">
+  <div class="svg">
+    <img src="assets/login_svg.svg" alt="" />
+  </div>
+  <div class="login_form">
+    <h1>Login Here</h1>
+    <p id="invalid"></p>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email*" required />
+      <input type="password" id="password" placeholder="Password*" required />
+      <i class="far fa-eye-slash" id="togglePassword"></i>
+      <button type="submit">Sign In</button>
+    </form>
+    <p>New user ? <a routerLink="/registration">Register here</a></p>
+  </div>
+</div>
