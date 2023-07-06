@@ -8,11 +8,31 @@
   </div>
   <div class="login_form">
     <h1>Login Here</h1>
-    <p id="invalid"></p>
     <form (submit)="login()">
-      <input type="email" id="email" placeholder="Email*" [(ngModel)]="email" name="email" />
-      <input type="password" id="password" placeholder="Password*" [(ngModel)]="password" name="password" />
-      <i class="far fa-eye-slash" id="togglePassword"></i>
+      <p>{{ alertMessage }}</p>
+      <input
+        type="email"
+        id="email"
+        placeholder="Email*"
+        [(ngModel)]="email"
+        name="email"
+      />
+      <input
+        type="{{ isPasswordVisible ? 'text' : 'password' }}"
+        id="password"
+        placeholder="Password*"
+        [(ngModel)]="password"
+        name="password"
+      />
+      <i
+        class="far fa-eye-slash"
+        [ngClass]="{
+          'fa-eye': isPasswordVisible,
+          'fa-eye-slash': !isPasswordVisible
+        }"
+        id="togglePassword"
+        (click)="togglePasswordVisibility()"
+      ></i>
       <button type="submit">Sign In</button>
     </form>
     <p>New user ? <a routerLink="/registration">Register here</a></p>

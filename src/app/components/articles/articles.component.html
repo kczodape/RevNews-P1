@@ -1,0 +1,21 @@
+<div class="article-grid">
+  <div class="article-card" *ngFor="let article of filteredArticles">
+    <!-- <img class="article-image" [src]="article.imageUrl" alt="Article Image"> -->
+    <img [src]="article.imageUrl" alt="Article Image" />
+    <div class="article-content">
+      <h2 class="article-title">{{ truncateTitle(article.title, 7) }}</h2>
+      <p>Date: {{ formatDate(article.date) }}</p>
+      <p>Author: {{ article.author || "Unknown" }}</p>
+      <p class="article-description">
+        {{ truncateDescription(article.description, 12) }}
+      </p>
+
+      <a class="read-more-btn" [href]="article.url" target="_blank"
+        >Read More</a
+      >
+    </div>
+  </div>
+  <p class="no-articles-found" *ngIf="filteredArticles.length === 0">
+    No articles found.
+  </p>
+</div>

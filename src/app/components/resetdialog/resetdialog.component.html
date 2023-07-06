@@ -1,0 +1,23 @@
+<form (submit)="reset()">
+  <label for="oldPassword">Enter old password</label>
+  <input
+    type="password"
+    id="oldPassword"
+    placeholder="Enter old Password"
+    name="oldPassword"
+    [(ngModel)]="oldPassword"
+    required
+  />
+
+  <label for="newPassword">Enter new password</label>
+  <input
+    type="password"
+    id="newPassword"
+    placeholder="Enter new Password"
+    name="newPassword"
+    [(ngModel)]="newPassword"
+    required
+  />
+
+  <button type="submit">Reset</button>
+</form>

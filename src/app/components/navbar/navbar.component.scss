@@ -1,0 +1,16 @@
+.example-spacer {
+    flex: 1 1 auto;
+  }
+  mat-toolbar {
+    background: black;
+    color: #fff;
+    .pointer{
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    button{
+      margin: 0 5px;
+    }
+  }
+  

@@ -46,6 +46,10 @@
       form {
         display: flex;
         flex-direction: column;
+        p{
+          text-align: center;
+          color: red;
+        }
         input,
         select {
           border: none;

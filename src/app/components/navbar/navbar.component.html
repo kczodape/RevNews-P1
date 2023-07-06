@@ -1,0 +1,32 @@
+<mat-toolbar>
+  <span routerLink="/index" class="pointer">Hot News</span>
+  <span class="example-spacer"></span>
+  <div *ngIf="sessionService.isLoggedIn">
+    <button (click)="logout()" mat-raised-button color="warn">
+      <mat-icon>logout</mat-icon>
+      Logout
+    </button>
+  </div>
+  <button mat-raised-button routerLink="/profile">
+    <mat-icon>person</mat-icon>
+    Profile
+  </button>
+  <div class="navbar">
+    <select [(ngModel)]="selectedCountry" (change)="onCountryChange()">
+        <option value="">country</option>
+        <option value="us">us</option>
+        <option value="in">in</option>
+      <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
+    </select>
+  
+    <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
+        <option value="sport">sport</option>
+        <option value="business">business</option>
+      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+    </select>
+    <!-- <input type="text" [(ngModel)]="searchKeyword" placeholder="Search..."> -->
+    <input type="text" [(ngModel)]="searchQuery" (input)="performSearch()" placeholder="Search">
+  <button (click)="filterArticles()">Search</button>
+
+  </div>
+</mat-toolbar>

@@ -1,0 +1,334 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  * {
+    overflow: hidden;
+  }
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    margin: -8px;
+    position: sticky;
+    top: 0;
+    box-shadow: 40px -1px 23px 3px lightblue;
+    padding: 0px 15px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.01453081232492992) 17%,
+      rgba(0, 6, 36, 0.364670868347339) 34%,
+      rgba(0, 212, 255, 1) 100%
+    );
+    .logo {
+      display: flex;
+      img {
+        height: 90px;
+      }
+      h1 {
+        background: #ff0000;
+        background: linear-gradient(to left, #ff0000 0%, #000000 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+  
+    .btns {
+      display: flex;
+      display: flex;
+      margin-top: auto;
+      margin-bottom: auto;
+      width: 20%;
+      justify-content: space-evenly;
+    }
+  }
+  button {
+    --primary-color: #645bff;
+    --secondary-color: #fff;
+    --hover-color: #fff;
+    --arrow-width: 10px;
+    --arrow-stroke: 2px;
+    box-sizing: border-box;
+    border: 0;
+    border-radius: 20px;
+    color: var(--secondary-color);
+    padding: 1em 1.8em;
+    background: var(--primary-color);
+    display: flex;
+    transition: 0.2s background;
+    align-items: center;
+    gap: 0.6em;
+    font-weight: bold;
+    height: 30px;
+    height: 40px;
+    width: 40%;
+  }
+  
+  button .arrow-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  button .arrow {
+    color: black;
+    margin-top: 1px;
+    width: var(--arrow-width);
+    background: var(--primary-color);
+    height: var(--arrow-stroke);
+    position: relative;
+    transition: 0.2s;
+  }
+  
+  button .arrow::before {
+    content: "";
+    box-sizing: border-box;
+    position: absolute;
+    border: solid black;
+    border-width: 0 var(--arrow-stroke) var(--arrow-stroke) 0;
+    display: inline-block;
+    top: -3px;
+    right: 3px;
+    transition: 0.2s;
+    padding: 3px;
+    transform: rotate(-45deg);
+  }
+  
+  button:hover {
+    color: #000000;
+    background-color: var(--hover-color);
+    cursor: pointer;
+  }
+  
+  button:hover .arrow {
+    color: black;
+    background: var(--secondary-color);
+  }
+  
+  button:hover .arrow:before {
+    right: 0;
+    color: #000000;
+  }
+  
+  //   ==============================================================
+  
+  .button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6px 12px;
+    gap: 8px;
+    height: 32px;
+    width: 90px;
+    border: none;
+    background: #a549dacb;
+    border-radius: 20px;
+    cursor: pointer;
+    height: 40px;
+    width: 40%;
+  }
+  
+  .lable {
+    line-height: 20px;
+    font-size: 12px;
+    color: #fff;
+    font-family: sans-serif;
+    letter-spacing: 1px;
+  }
+  
+  .svg-icon {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .button:hover {
+    background: #a649da;
+  }
+  
+  .button:hover .svg-icon {
+    animation: rot 0.5s linear infinite;
+  }
+  
+  @keyframes rot {
+    0% {
+      transform: rotate(0deg);
+    }
+  
+    25% {
+      transform: rotate(-6deg);
+    }
+  
+    50% {
+      transform: rotate(0deg);
+    }
+  
+    75% {
+      transform: rotate(6deg);
+    }
+  
+    100% {
+      transform: rotate(0deg);
+    }
+  }
+  
+  // ================================================
+  .container {
+    display: flex;
+    .textFlow {
+      width: 55%;
+      p {
+        margin-left: 40px;
+        font-size: 22px;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      button {
+        position: relative;
+        display: inline-block;
+        margin: 15px;
+        padding: 9px 30px;
+        text-align: center;
+        font-size: 18px;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #725ac1;
+        background: transparent;
+        cursor: pointer;
+        transition: ease-out 0.5s;
+        border: 2px solid #725ac1;
+        border-radius: 10px;
+        box-shadow: inset 0 0 0 0 #725ac1;
+        margin-left: 40px;
+      }
+  
+      button:hover {
+        color: white;
+        box-shadow: inset 0 -100px 0 0 #725ac1;
+      }
+  
+      button:active {
+        transform: scale(0.9);
+      }
+    }
+    .svg {
+      width: 45%;
+      img {
+        width: 100%;
+      }
+    }
+    h1 {
+      color: #333;
+      font-family: tahoma;
+      font-size: 3rem;
+      font-weight: 100;
+      line-height: 1.5;
+      text-transform: uppercase;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      width: 700px;
+      margin-bottom: 75px;
+    }
+  
+    h1 span {
+      font-size: 38px;
+      margin-left: 40px;
+    }
+  
+    .message {
+      background-image: linear-gradient(
+        to left top,
+        #d16ba5,
+        #c777b9,
+        #ba83ca,
+        #aa8fd8,
+        #9a9ae1,
+        #8aa7ec,
+        #79b3f4,
+        #69bff8,
+        #52cffe,
+        #41dfff,
+        #46eefa,
+        #5ffbf1
+      );
+      color: #fff;
+      display: block;
+      font-weight: 900;
+      overflow: hidden;
+      position: absolute;
+      padding-left: 0.5rem;
+      top: 0.2rem;
+      left: 300px;
+      animation: openclose 5s ease-in-out infinite;
+    }
+  
+    .word1,
+    .word2,
+    .word3 {
+      font-family: tahoma;
+    }
+  
+    @keyframes openclose {
+      0% {
+        top: 0.2rem;
+        width: 0;
+      }
+      5% {
+        width: 0;
+      }
+      15% {
+        width: 230px;
+      }
+      30% {
+        top: 0.2rem;
+        width: 230px;
+      }
+      33% {
+        top: 0.2rem;
+        width: 0;
+      }
+      35% {
+        top: 0.2rem;
+        width: 0;
+      }
+      38% {
+        top: -4.5rem;
+      }
+      48% {
+        top: -4.5rem;
+        width: 190px;
+      }
+      62% {
+        top: -4.5rem;
+        width: 190px;
+      }
+      66% {
+        top: -4.5rem;
+        width: 0;
+        text-indent: 0;
+      }
+      71% {
+        top: -9rem;
+        width: 0;
+        text-indent: 5px;
+      }
+      86% {
+        top: -9rem;
+        width: 285px;
+      }
+      95% {
+        top: -9rem;
+        width: 285px;
+      }
+      98% {
+        top: -9rem;
+        width: 0;
+        text-indent: 5px;
+      }
+      100% {
+        top: 0;
+        width: 0;
+        text-indent: 0;
+      }
+    }
+  }
+  //===================================================
+  
