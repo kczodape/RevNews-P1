@@ -1,4 +1,4 @@
-import { Component, OnInit,EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { SessionService } from 'src/app/services/session.service';
 import { Router, NavigationStart } from '@angular/router';
 import { filter } from 'rxjs';
@@ -16,12 +16,17 @@ export class NavbarComponent implements OnInit {
   user: any;
   countries: any[] = [];
   categories: any[] = [];
-  selectedCountry: string | any;
-  selectedCategory: string | any;
+  selectedCountry: 'us' | any;
+  selectedCategory: 'general' | any;
   searchKeyword: string = '';
   public searchQuery: string = '';
 
-  constructor(public sessionService: SessionService, private router: Router,private articleService: ArticleService,private searchService: SearchService) {
+  constructor(
+    public sessionService: SessionService,
+    private router: Router,
+    private articleService: ArticleService,
+    private searchService: SearchService
+  ) {
     this.user = this.sessionService.getUser();
   }
 
@@ -37,7 +42,7 @@ export class NavbarComponent implements OnInit {
           this.router.navigateByUrl('/login');
         }
       });
-      this.fetchCountries();
+    this.fetchCountries();
     this.fetchCategories();
   }
 
@@ -48,32 +53,37 @@ export class NavbarComponent implements OnInit {
   }
   fetchCountries() {
     this.articleService.getCountries().subscribe((data: any) => {
-      this.countries = data.countries;
-      this.selectedCountry = this.countries[0].code; // Select the first country by default
-      this.onCountryChange();
+      const uniqueCountries = [
+        ...new Set(data.sources.map((source: any) => source.country)),
+      ];
+      this.countries = uniqueCountries.filter((country) => country);
+      this.selectedCountry = null;
     });
   }
 
   fetchCategories() {
     this.articleService.getCategories().subscribe((data: any) => {
-      this.categories = data.categories;
-      this.selectedCategory = this.categories[0]; // Select the first category by default
-      this.onCategoryChange();
+      const uniqueCategories = [
+        ...new Set(data.sources.map((source: any) => source.category)),
+      ];
+      this.categories = uniqueCategories.filter((category) => category);
+      this.selectedCategory = null;
     });
   }
 
   onCountryChange() {
+    console.log('Selected Country:', this.selectedCountry);
     this.articleService.setSelectedCountry(this.selectedCountry);
   }
 
   onCategoryChange() {
+    console.log('Selected Category:', this.selectedCategory);
     this.articleService.setSelectedCategory(this.selectedCategory);
   }
   filterArticles() {
     this.searchService.setSearchKeyword(this.searchKeyword);
   }
- public performSearch(){
-  this.searchService.setSearchKeyword(this.searchQuery);
- }
- 
+  public performSearch() {
+    this.searchService.setSearchKeyword(this.searchQuery);
+  }
 }

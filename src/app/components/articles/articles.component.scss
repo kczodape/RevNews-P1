@@ -1,3 +1,10 @@
+h1 {
+  text-align: center;
+  background: linear-gradient(to right, red, blue);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  margin-top: 3%;
+}
 .article-card {
   display: flex;
   flex-direction: column;
@@ -6,6 +13,9 @@
   padding: 10px;
   margin-bottom: 10px;
   width: 300px; /* Adjust the width as needed */
+  img{
+    height: 250px;
+  }
 }
 
 .article-image {
@@ -20,7 +30,7 @@
 
 .article-title {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 5px;
 }
 
@@ -30,15 +40,15 @@
 
 .read-more-btn {
   display: inline-block;
-  padding: 5px 10px;
-  background-color: #007bff;
+  padding: 10px 10px;
+  background-color: black;
   color: #fff;
   text-decoration: none;
-  border-radius: 4px;
+  border-radius: 3px;
 }
 
 .read-more-btn:hover {
-  background-color: #0056b3;
+  background-color: rgb(42, 41, 41);
 }
 
 .no-articles-found {
@@ -53,11 +63,11 @@
 //   }
 
 .article-grid {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(300px, 1fr)
-  ); /* Adjust the minmax and width as needed */
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 3%;
+  justify-content: space-evenly;
+  .article-card {
+    flex-basis: 300px;
+  }
 }
-

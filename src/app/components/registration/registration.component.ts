@@ -9,6 +9,8 @@ import {
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { CREATE_USER } from 'src/app/gql/usersMutation';
+import { ArticleService } from 'src/app/services/article.service';
+import { GeolocationService } from 'src/app/services/geolocation.service';
 
 @Component({
   selector: 'app-registration',
@@ -19,11 +21,14 @@ export class RegistrationComponent implements OnInit {
   registrationForm: FormGroup;
   showAlert: boolean = false;
   alertMessage: string = '';
-
+  geoLocation: any;
+  lowerCaseCountry: String | any;
   constructor(
     private formBuilder: FormBuilder,
     private apollo: Apollo,
-    private router: Router
+    private router: Router,
+    private geoLocationService: GeolocationService,
+    private articleService: ArticleService
   ) {
     this.registrationForm = this.formBuilder.group(
       {
@@ -40,8 +45,34 @@ export class RegistrationComponent implements OnInit {
     );
   }
 
+  ngOnInit(): void {
+    this.geoLocationService.getLocation().subscribe((response) => {
+      console.log(response);
+      this.geoLocation = response;
+      this.lowerCaseCountry = this.geoLocation?.country.toLowerCase();
+      sessionStorage.setItem('selectedCountry', this.lowerCaseCountry);
+      this.articleService.setSelectedCountry(this.lowerCaseCountry);
+    });
+  }
 
-  ngOnInit(): void {}
+  // transformToLowerCase(obj: any): any {
+  //   if (typeof obj !== 'object' || obj === null) {
+  //     return obj;
+  //   }
+
+  //   if (Array.isArray(obj)) {
+  //     return obj.map((item) => this.transformToLowerCase(item));
+  //   }
+
+  //   const transformedObj: any = {};
+
+  //   for (const key in obj) {
+  //     if (obj.hasOwnProperty(key)) {
+  //       transformedObj[key.toLowerCase()] = this.transformToLowerCase(obj[key]);
+  //     }
+  //   }
+  //   return transformedObj;
+  // }
 
   isFieldInvalid(fieldName: string): boolean | any {
     const field = this.registrationForm.get(fieldName);
@@ -61,37 +92,47 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     if (this.registrationForm.valid) {
-      const { firstName, lastName, age, contactNumber, email, country, password } = this.registrationForm.value;
+      const {
+        firstName,
+        lastName,
+        age,
+        contactNumber,
+        email,
+        country,
+        password,
+      } = this.registrationForm.value;
 
-      this.apollo.mutate({
-        mutation: CREATE_USER,
-        variables: {
-          firstName,
-          lastName,
-          age,
-          contactNumber,
-          email,
-          country,
-          password,
-        },
-        errorPolicy: 'all' 
-      }).subscribe(
-        (response) => {
-          const user = (response.data as any)?.createUser;
-          console.log(response.data);
-          this.router.navigate(['/login']);
-        },
-        (error) => {
-          const errorMessage = error.message;
-          if (errorMessage === 'User with this email already exists') {
-            this.showAlert = true;
-            this.alertMessage = 'User with this email already exists';
-          } else {
-            this.showAlert = true;
-            this.alertMessage = 'Registration failed';
+      this.apollo
+        .mutate({
+          mutation: CREATE_USER,
+          variables: {
+            firstName,
+            lastName,
+            age,
+            contactNumber,
+            email,
+            country,
+            password,
+          },
+          errorPolicy: 'all',
+        })
+        .subscribe(
+          (response) => {
+            const user = (response.data as any)?.createUser;
+            console.log(response.data);
+            this.router.navigate(['/login']);
+          },
+          (error) => {
+            const errorMessage = error.message;
+            if (errorMessage === 'User with this email already exists') {
+              this.showAlert = true;
+              this.alertMessage = 'User with this email already exists';
+            } else {
+              this.showAlert = true;
+              this.alertMessage = 'Registration failed';
+            }
           }
-        }
-      );
+        );
     }
   }
 }

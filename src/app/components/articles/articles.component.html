@@ -1,13 +1,15 @@
+<h1>Hot News - Top headlines from {{ category }} category</h1>
 <div class="article-grid">
   <div class="article-card" *ngFor="let article of filteredArticles">
     <!-- <img class="article-image" [src]="article.imageUrl" alt="Article Image"> -->
-    <img [src]="article.imageUrl" alt="Article Image" />
+    <img *ngIf="article.urlToImage" [src]="article.urlToImage" alt="Article Image" />
+    <img *ngIf="!article.urlToImage" src="assets/no_img.jpg" alt="Default Image" />
     <div class="article-content">
-      <h2 class="article-title">{{ truncateTitle(article.title, 7) }}</h2>
+      <h2 class="article-title">{{ article.title }}</h2>
       <p>Date: {{ formatDate(article.date) }}</p>
       <p>Author: {{ article.author || "Unknown" }}</p>
       <p class="article-description">
-        {{ truncateDescription(article.description, 12) }}
+        {{ article.description }}
       </p>
 
       <a class="read-more-btn" [href]="article.url" target="_blank"

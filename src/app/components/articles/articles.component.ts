@@ -23,6 +23,7 @@ export class ArticlesComponent implements OnInit {
   searchKeyword: string = '';
   keyword: any[] = [];
   public searchQuery: string = '';
+  category: string = '';
 
   constructor(
     private articleService: ArticleService,
@@ -43,6 +44,7 @@ export class ArticlesComponent implements OnInit {
         this.articleService.getSelectedCountry(),
         selectedCategory
       );
+      this.category = selectedCategory;
     });
     this.articleService
       .getArticles(
@@ -94,21 +96,12 @@ export class ArticlesComponent implements OnInit {
     );
   }
 
-  public truncateTitle(title: string, limit: number): string {
+  public truncateWord(title: string, limit: number): string {
     const words = title.split(' ');
     if (words.length > limit) {
       return words.slice(0, limit).join(' ') + '...';
     } else {
       return title;
-    }
-  }
-
-  public truncateDescription(description: string, limit: number): string {
-    const words = description.split(' ');
-    if (words.length > limit) {
-      return words.slice(0, limit).join(' ') + '...';
-    } else {
-      return description;
     }
   }
 }

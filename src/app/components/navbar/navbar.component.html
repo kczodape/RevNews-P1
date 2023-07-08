@@ -1,6 +1,60 @@
 <mat-toolbar>
   <span routerLink="/index" class="pointer">Hot News</span>
   <span class="example-spacer"></span>
+  <div class="navbar">
+    <label for="Select country" class="label">Select country:</label>
+    <select
+      value=""
+      [(ngModel)]="selectedCountry"
+      (change)="onCountryChange()"
+      *ngIf="countries.length > 0"
+    >
+      <option value="" SELECTED>country</option>
+      <option *ngFor="let country of countries" [value]="country">
+        {{ country }}
+      </option>
+    </select>
+
+    <label for="Select category" class="label">Select category:</label>
+    <select
+      [(ngModel)]="selectedCategory"
+      (change)="onCategoryChange()"
+      *ngIf="categories.length > 0"
+    >
+      <option value="" SELECTED>category</option>
+      <option *ngFor="let category of categories" [value]="category">
+        {{ category }}
+      </option>
+    </select>
+
+    <input
+      type="text"
+      [(ngModel)]="searchQuery"
+      (input)="performSearch()"
+      placeholder="Search..."
+    />
+    <button (click)="filterArticles()"><mat-icon>search</mat-icon></button>
+  </div>
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Example icon-button with a menu"
+  >
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <div *ngIf="sessionService.isLoggedIn">
+      <button mat-menu-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+    <button routerLink="/profile" mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+  </mat-menu>
+  <!-- 
   <div *ngIf="sessionService.isLoggedIn">
     <button (click)="logout()" mat-raised-button color="warn">
       <mat-icon>logout</mat-icon>
@@ -10,23 +64,5 @@
   <button mat-raised-button routerLink="/profile">
     <mat-icon>person</mat-icon>
     Profile
-  </button>
-  <div class="navbar">
-    <select [(ngModel)]="selectedCountry" (change)="onCountryChange()">
-        <option value="">country</option>
-        <option value="us">us</option>
-        <option value="in">in</option>
-      <option *ngFor="let country of countries" [value]="country.code">{{ country.name }}</option>
-    </select>
-  
-    <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()">
-        <option value="sport">sport</option>
-        <option value="business">business</option>
-      <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
-    </select>
-    <!-- <input type="text" [(ngModel)]="searchKeyword" placeholder="Search..."> -->
-    <input type="text" [(ngModel)]="searchQuery" (input)="performSearch()" placeholder="Search">
-  <button (click)="filterArticles()">Search</button>
-
-  </div>
+  </button> -->
 </mat-toolbar>

@@ -1,16 +1,47 @@
 .example-spacer {
-    flex: 1 1 auto;
-  }
-  mat-toolbar {
-    background: black;
-    color: #fff;
-    .pointer{
-      &:hover{
-        cursor: pointer;
-      }
-    }
-    button{
-      margin: 0 5px;
+  flex: 1 1 auto;
+}
+mat-toolbar {
+  background: black;
+  color: #fff;
+  .pointer {
+    font-size: 22px;
+    font-weight: 400;
+    &:hover {
+      cursor: pointer;
     }
   }
-  
+  button {
+    margin: 0 5px;
+  }
+}
+.navbar {
+  display: flex;
+  .label{
+    align-self: center;
+    margin: 0 5px 0 15px;
+  }
+  select {
+    padding: 8px;
+    width: 30%;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    margin: 0 5px;
+  }
+  input {
+    border: none;
+    padding: 0 10px;
+    border-radius: 3px;
+    outline: none;
+    margin-left: 4px;
+  }
+  button {
+    border: none;
+    background: transparent;
+    margin: 4px 0 0 -34px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

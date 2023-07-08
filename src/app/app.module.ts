@@ -14,6 +14,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialog, MatDialogRef, MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon'
+import {MatSelectModule} from '@angular/material/select';
 import {MatButtonModule} from '@angular/material/button';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -21,6 +22,7 @@ import { DeletedialogComponent } from './components/deletedialog/deletedialog.co
 import { ResetdialogComponent } from './components/resetdialog/resetdialog.component';
 import { UpdatedialogComponent } from './components/updatedialog/updatedialog.component';
 import { ArticlesComponent } from './components/articles/articles.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ArticlesComponent } from './components/articles/articles.component';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSelectModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
