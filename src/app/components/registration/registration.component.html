@@ -1,7 +1,7 @@
 <div class="head">
   <h1>Welcome to Hot News</h1>
 </div>
-<!-- <h1>Location: {{ lowerCaseCountry }}</h1> -->
+<h1>Location: {{ lowerCaseCountry }}</h1>
 <div class="login">
   <div class="svg">
     <img src="assets/reg_svg.svg" alt="" />
@@ -18,8 +18,8 @@
             formControlName="firstName"
             placeholder="First name*"
           />
-          <div *ngIf="isFieldInvalid('firstName')">
-            Please enter your first name
+          <div class="validation" *ngIf="isFieldInvalid('firstName')">
+            Please enter your first name !
           </div>
         </div>
         <div class="inpLabel">
@@ -30,8 +30,8 @@
             formControlName="lastName"
             placeholder="Last name*"
           />
-          <div *ngIf="isFieldInvalid('lastName')">
-            Please enter your last name
+          <div class="validation" *ngIf="isFieldInvalid('lastName')">
+            Please enter your last name !
           </div>
         </div>
       </div>
@@ -44,23 +44,25 @@
             formControlName="age"
             placeholder="Age*"
           />
-          <div *ngIf="isFieldInvalid('age')">Please enter your age</div>
+          <div class="validation" *ngIf="isFieldInvalid('age')">
+            Please enter your age !
+          </div>
         </div>
         <div class="inpLabel">
-          <label for="contactNumber">Enter your contact number</label>
+          <label for="contactNumber">Enter your contact number </label>
           <input
             type="text"
             id="contactNumber"
             formControlName="contactNumber"
             placeholder="Contact Number*"
           />
-          <div *ngIf="isFieldInvalid('contactNumber')">
-            Please enter your contact number
+          <div class="validation" *ngIf="isFieldInvalid('contactNumber')">
+            Please enter your contact number !
           </div>
         </div>
       </div>
       <div class="reg_inpt">
-        <div class="inpLabel">
+        <div class="inpLabel inpLabelEmail">
           <label for="email">Enter Email</label>
           <input
             type="email"
@@ -68,14 +70,21 @@
             formControlName="email"
             placeholder="Email*"
           />
-          <div *ngIf="isFieldInvalid('email')">Please enter your email</div>
+          <div class="validation" *ngIf="isFieldInvalid('email')">
+            <ng-container *ngIf="isEmailExists()">
+              Email ID already exists. Please enter a different email.
+            </ng-container>
+            <ng-container *ngIf="!isEmailExists() && isFieldInvalid('email')">
+              Please enter your email!
+            </ng-container>
+          </div>
         </div>
-        <div class="inpLabel">
+        <!-- <div class="inpLabel">
           <label for="">Select country</label>
           <select id="country" formControlName="country">
             <option value="Select country" selected>Select country</option>
           </select>
-        </div>
+        </div> -->
       </div>
       <div class="reg_inpt">
         <div class="inpLabel">
@@ -86,8 +95,8 @@
             formControlName="password"
             placeholder="Password*"
           />
-          <div *ngIf="isFieldInvalid('password')">
-            Please enter your password
+          <div class="validation" *ngIf="isFieldInvalid('password')">
+            Please enter your password !
           </div>
         </div>
         <div class="inpLabel">
@@ -98,8 +107,8 @@
             formControlName="confirmPassword"
             placeholder="Confirm password*"
           />
-          <div *ngIf="isFieldInvalid('confirmPassword')">
-            Please enter your confirm password
+          <div class="validation" *ngIf="isFieldInvalid('confirmPassword')">
+            Please enter your confirm password !
           </div>
         </div>
       </div>

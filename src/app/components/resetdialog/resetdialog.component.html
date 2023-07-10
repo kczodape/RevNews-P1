@@ -1,4 +1,5 @@
-<form (submit)="reset()">
+<form (submit)="reset()" #resetForm="ngForm">
+  <p>old password: {{dbPassword}}</p>
   <label for="oldPassword">Enter old password</label>
   <input
     type="password"
@@ -7,7 +8,13 @@
     name="oldPassword"
     [(ngModel)]="oldPassword"
     required
+    #oldPasswordInput="ngModel"
   />
+  <div *ngIf="oldPasswordInput.invalid && (oldPasswordInput.dirty || oldPasswordInput.touched)">
+    <div class="invalidation" *ngIf="oldPasswordInput.errors && oldPasswordInput.errors['required']">
+      Please enter the old password !
+    </div>
+  </div>
 
   <label for="newPassword">Enter new password</label>
   <input
@@ -17,7 +24,13 @@
     name="newPassword"
     [(ngModel)]="newPassword"
     required
+    #newPasswordInput="ngModel"
   />
+  <div *ngIf="newPasswordInput.invalid && (newPasswordInput.dirty || newPasswordInput.touched)">
+    <div class="invalidation" *ngIf="newPasswordInput.errors && newPasswordInput.errors['required']">
+      Please enter the new password !
+    </div>
+  </div>
 
-  <button type="submit">Reset</button>
+  <button type="submit" [disabled]="resetForm.invalid">Reset</button>
 </form>

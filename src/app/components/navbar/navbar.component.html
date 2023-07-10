@@ -2,6 +2,19 @@
   <span routerLink="/index" class="pointer">Hot News</span>
   <span class="example-spacer"></span>
   <div class="navbar">
+    <div class="categories-list">
+      <div class="category-item" *ngFor="let category of categories">
+        <input
+          type="radio"
+          name="selectedCategory"
+          [value]="category"
+          [(ngModel)]="selectedCategory"
+          (change)="onCategoryChange()"
+          id="{{ category }}"
+        />
+        <label [for]="category">{{ category }}</label>
+      </div>
+    </div>
     <label for="Select country" class="label">Select country:</label>
     <select
       value=""
@@ -12,18 +25,6 @@
       <option value="" SELECTED>country</option>
       <option *ngFor="let country of countries" [value]="country">
         {{ country }}
-      </option>
-    </select>
-
-    <label for="Select category" class="label">Select category:</label>
-    <select
-      [(ngModel)]="selectedCategory"
-      (change)="onCategoryChange()"
-      *ngIf="categories.length > 0"
-    >
-      <option value="" SELECTED>category</option>
-      <option *ngFor="let category of categories" [value]="category">
-        {{ category }}
       </option>
     </select>
 

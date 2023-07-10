@@ -12,8 +12,8 @@ export class ArticleService {
   filterArticles() {
     throw new Error('Method not implemented.');
   }
-  // private apiKey = '';
-  private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
+  private apiKey = '';
+  // private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
   private apiUrl = 'https://newsapi.org/v2';
   private selectedCountrySubject = new BehaviorSubject<string>('us');
   private selectedCategorySubject = new BehaviorSubject<string>('general');

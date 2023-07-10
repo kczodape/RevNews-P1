@@ -7,9 +7,10 @@ export const LOGIN_USER = gql`
       firstName
       lastName
       age
-      country
+      # country
       email
       contactNumber
+      password
     }
   }
 `;

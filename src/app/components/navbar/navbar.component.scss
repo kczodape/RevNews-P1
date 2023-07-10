@@ -17,7 +17,32 @@ mat-toolbar {
 }
 .navbar {
   display: flex;
-  .label{
+  width: 78%;
+  .categories-list {
+    display: flex;
+    align-self: center;
+    input[type="radio"] {
+      padding: 0.5em;
+      -webkit-appearance: none;
+      outline: 0.1em solid white;
+      outline-offset: 0.1em;
+    }
+
+    input[type="radio"]:checked {
+      display: inline-block;
+      background-color: whitesmoke;
+    }
+    .category-item {
+      margin: 0 10px;
+      input {
+        margin-right: 5px;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  .label {
     align-self: center;
     margin: 0 5px 0 15px;
   }

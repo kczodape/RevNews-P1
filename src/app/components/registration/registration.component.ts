@@ -1,16 +1,13 @@
+import { GetemailsService } from 'src/app/services/getemails.service';
 import { Users } from './../../users/users';
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  Validators,
-  FormBuilder,
-} from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { CREATE_USER } from 'src/app/gql/usersMutation';
 import { ArticleService } from 'src/app/services/article.service';
 import { GeolocationService } from 'src/app/services/geolocation.service';
+import { AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-registration',
@@ -22,7 +19,8 @@ export class RegistrationComponent implements OnInit {
   showAlert: boolean = false;
   alertMessage: string = '';
   geoLocation: any;
-  lowerCaseCountry: String | any;
+  public lowerCaseCountry: String | any;
+  
   constructor(
     private formBuilder: FormBuilder,
     private apollo: Apollo,
@@ -37,7 +35,7 @@ export class RegistrationComponent implements OnInit {
         age: ['', Validators.required],
         contactNumber: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
-        country: ['', Validators.required],
+        // country: ['', Validators.required],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', Validators.required],
       },
@@ -90,6 +88,14 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  isEmailExists(): boolean {
+    const emailControl: AbstractControl | null =
+      this.registrationForm.get('email');
+    const email: string = emailControl?.value;
+    const emailExists = false; 
+    return emailExists;
+  }
+
   onSubmit() {
     if (this.registrationForm.valid) {
       const {
@@ -98,7 +104,7 @@ export class RegistrationComponent implements OnInit {
         age,
         contactNumber,
         email,
-        country,
+        // country,
         password,
       } = this.registrationForm.value;
 
@@ -111,7 +117,7 @@ export class RegistrationComponent implements OnInit {
             age,
             contactNumber,
             email,
-            country,
+            // country,
             password,
           },
           errorPolicy: 'all',

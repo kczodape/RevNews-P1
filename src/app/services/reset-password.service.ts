@@ -2,25 +2,45 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { gql } from 'apollo-angular';
 
-const RESET_PASSWORD_MUTATION = gql`
-mutation RestePassword($email: String!, $oldPassWord: String!, $newPassWord: String!){
-  resetPassword(email: $email, oldPassword: $oldPassWord, newPassWord: $newPassWord){
-    id
-    email
-  }
-}`;
+// const RESET_PASSWORD_MUTATION = gql`
+//   mutation RestePassword(
+//     $email: String!
+//     $oldPassWord: String!
+//     $newPassWord: String!
+//   ) {
+//     resetPassword(
+//       email: $email
+//       oldPassword: $oldPassWord
+//       newPassWord: $newPassWord
+//     ) {
+//       id
+//       email
+//     }
+//   }
+// `;
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ResetPasswordService {
+  constructor(private apollo: Apollo) {}
 
-  constructor(private apollo: Apollo) { }
+  resetPassword(id: string, password: string): any {
+    const mutation = gql`
+      mutation UpdateUser($id: ID!, $password: String!) {
+        updateUser(id: $id, password: $password) {
+          email
+          password
+        }
+      }
+    `;
 
-  resetPassword(email: string, oldPassword: string, newPassword: string) {
     return this.apollo.mutate({
-      mutation: RESET_PASSWORD_MUTATION,
-      variables: { email, oldPassword, newPassword },
-    });
+      mutation,
+      variables: {
+        id,
+        password
+      }
+    })
   }
 }

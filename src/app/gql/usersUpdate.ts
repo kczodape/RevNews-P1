@@ -7,8 +7,7 @@ export const UPDATE_USER = gql`
     $lastName: String!
     $age: String!
     $contactNumber: String!
-    $email: String!
-    $country: String!
+    $email: String! # $country: String!
   ) {
     updateUser(
       id: $id
@@ -16,15 +15,15 @@ export const UPDATE_USER = gql`
       lastName: $lastName
       age: $age
       contactNumber: $contactNumber
-      email: $email
-      country: $country
+      email: $email # country: $country
     ) {
+      id
       firstName
       lastName
       age
       contactNumber
       email
-      country
+      # country
     }
   }
 `;

@@ -7,7 +7,7 @@ export const GET_USERS = gql`
       firstName
       lastName
       age
-      country
+      # country
       email
       password
       contactNumber

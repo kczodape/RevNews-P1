@@ -1,5 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
 import { ResetPasswordService } from 'src/app/services/reset-password.service';
+import { SessionService } from 'src/app/services/session.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-resetdialog',
@@ -8,22 +12,44 @@ import { ResetPasswordService } from 'src/app/services/reset-password.service';
 })
 export class ResetdialogComponent {
   email: string | any;
+  user: any;
+  dbPassword: string | any;
   oldPassword: string | any;
   newPassword: string | any;
-  constructor(private resetPasswordService: ResetPasswordService){}
+
+  @ViewChild('resetForm', { static: false }) resetForm: NgForm | any;
+
+  constructor(
+    private resetPasswordService: ResetPasswordService,
+    private sessionService: SessionService,
+    private router: Router,
+    public dialogRef: MatDialogRef<ResetdialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) {
+    this.user = this.sessionService.getUser();
+    console.log(this.user);
+    this.dbPassword = this.user.password;
+    console.log(this.dbPassword);
+  }
+
   reset() {
-    // Call the resetPassword service method and pass the form values
-    this.resetPasswordService
-      .resetPassword(this.email, this.oldPassword, this.newPassword)
-      .subscribe(
-        (response) => {
-          // Reset password success, handle the response
-          console.log('Password reset successful:', response);
-        },
-        (error) => {
-          // Reset password failed, handle the error
-          console.error('Password reset failed:', error);
-        }
-      );
+    if (this.oldPassword === this.dbPassword) {
+      this.resetPasswordService
+        .resetPassword(this.user.id, this.newPassword)
+        .subscribe(
+          (response: any) => {
+            console.log('Password reset successfully:', response);
+            this.resetForm.resetForm();
+            this.router.navigateByUrl('/index');
+            alert('Password reset successfully');
+            this.dialogRef.close();
+          },
+          (error: any) => {
+            console.error('Password reset failed:', error);
+          }
+        );
+    } else {
+      alert('Password does not match');
+    }
   }
 }

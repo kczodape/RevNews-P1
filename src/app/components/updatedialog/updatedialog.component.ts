@@ -20,10 +20,11 @@ export class UpdatedialogComponent {
     private apollo: Apollo
   ) {
     this.user = this.sessionService.getUser();
-    this.formData = {...data};
+    this.formData = { ...data };
   }
   update(): void {
-    const { id, firstName, lastName, age, contactNumber, email, country } = this.formData;
+    const { id, firstName, lastName, age, contactNumber, email /*country*/ } =
+      this.formData;
     this.data.id = id;
 
     this.apollo
@@ -36,8 +37,8 @@ export class UpdatedialogComponent {
           age,
           contactNumber,
           email,
-          country,
-        }
+          // country,
+        },
       })
       .subscribe(
         (response) => {
@@ -45,6 +46,7 @@ export class UpdatedialogComponent {
           console.log('User updated', updatedUser);
           this.dialogRef.close(updatedUser);
           this.sessionService.setUser(updatedUser);
+          alert('Your profile updated successfully');
         },
         (error) => {
           console.error('Failed to update user', error);

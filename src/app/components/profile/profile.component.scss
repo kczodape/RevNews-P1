@@ -31,6 +31,9 @@
         h2 {
           text-align: center;
           color: darkblue;
+          border-bottom: 2px solid darkblue;
+          padding-bottom: 16px;
+          margin-bottom: 10px;
         }
         h3 {
           color: darkblue;
@@ -51,8 +54,9 @@
         }
         .numemail {
           display: flex;
-          flex-direction: column;
-          text-align: center;
+          // flex-direction: column;
+          // text-align: center;
+          justify-content: space-around;
         }
       }
       .btns {

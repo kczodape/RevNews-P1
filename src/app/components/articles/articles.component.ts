@@ -24,6 +24,7 @@ export class ArticlesComponent implements OnInit {
   keyword: any[] = [];
   public searchQuery: string = '';
   category: string = '';
+  country: string | any;
 
   constructor(
     private articleService: ArticleService,
@@ -37,6 +38,7 @@ export class ArticlesComponent implements OnInit {
         selectedCountry,
         this.articleService.getSelectedCategory()
       );
+      this.country = selectedCountry;
     });
 
     this.articleService.selectedCategory$.subscribe((selectedCategory) => {

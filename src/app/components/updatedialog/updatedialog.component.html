@@ -6,7 +6,8 @@
     placeholder="Enter your first name"
     name="firstName"
     [(ngModel)]="formData.firstName"
-     [ngModelOptions]="{standalone: true}" required
+    [ngModelOptions]="{ standalone: true }"
+    required
   />
   <label for="lastName">Enter your last name</label>
   <input
@@ -15,7 +16,8 @@
     placeholder="Enter your last name"
     name="lastName"
     [(ngModel)]="formData.lastName"
-     [ngModelOptions]="{standalone: true}" required
+    [ngModelOptions]="{ standalone: true }"
+    required
   />
   <label for="age">Enter your age</label>
   <input
@@ -24,13 +26,14 @@
     placeholder="Enter your age"
     name="age"
     [(ngModel)]="formData.age"
-     [ngModelOptions]="{standalone: true}" required
+    [ngModelOptions]="{ standalone: true }"
+    required
   />
-  <label for="country">Select country</label>
+  <!-- <label for="country">Select country</label>
   <select id="country" [(ngModel)]="formData.country"
    [ngModelOptions]="{standalone: true}" required>
     <option value="Select country" selected>Select country</option>
-  </select>
+  </select> -->
   <label for="contactNumber">Enter your contact Number</label>
   <input
     type="text"
@@ -38,7 +41,8 @@
     placeholder="Enter your contact Number"
     name="contactNumber"
     [(ngModel)]="formData.contactNumber"
-     [ngModelOptions]="{standalone: true}" required
+    [ngModelOptions]="{ standalone: true }"
+    required
   />
   <label for="email">Enter your email</label>
   <input
@@ -47,7 +51,8 @@
     placeholder="Enter your email"
     name="email"
     [(ngModel)]="formData.email"
-     [ngModelOptions]="{standalone: true}" required
+    [ngModelOptions]="{ standalone: true }"
+    required
   />
   <button type="submit">Update</button>
   <button (click)="close()">Close</button>

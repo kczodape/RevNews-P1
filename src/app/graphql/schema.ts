@@ -7,7 +7,7 @@ export const typeDefs = gql`
     lastName: String!
     contactNumber: Int!
     age: Int!
-    country: String!
+    # country: String!
     email: String!
     password: String!
   }
@@ -23,7 +23,7 @@ export const typeDefs = gql`
       lastName: String!
       contactNumber: Int!
       age: Int!
-      country: String!
+      # country: String!
       email: String!
       password: String!
     ): User!
@@ -34,7 +34,7 @@ export const typeDefs = gql`
       lastName: String
       contactNumber: Int
       age: Int
-      country: String
+      # country: String
       email: String
       password: String
     ): User!

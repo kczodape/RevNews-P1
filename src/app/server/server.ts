@@ -1,18 +1,18 @@
-import fs from 'fs-extra'
+import fs from 'fs-extra';
 import { ApolloServer, gql } from 'apollo-server';
 import { typeDefs as importedTypeDefs } from '../graphql/schema';
 
 interface User {
-    id: string;
-    firstName: string;
-    lastName: string;
-    contactNumber: string;
-    age: number;
-    country: string;
-    email: string;
-    password: string;
-  }
-  
+  id: string;
+  firstName: string;
+  lastName: string;
+  contactNumber: string;
+  age: number;
+  // country: string;
+  email: string;
+  password: string;
+}
+
 const typeDefs = gql`
   type User {
     id: ID!
@@ -20,7 +20,7 @@ const typeDefs = gql`
     lastName: String!
     contactNumber: String!
     age: Int!
-    country: String!
+    # country: String!
     email: String!
     password: String!
   }
@@ -36,7 +36,7 @@ const typeDefs = gql`
       lastName: String!
       contactNumber: String!
       age: Int!
-      country: String!
+      # country: String!
       email: String!
       password: String!
     ): User!
@@ -47,7 +47,7 @@ const typeDefs = gql`
       lastName: String
       contactNumber: String
       age: Int
-      country: String
+      # country: String
       email: String
       password: String
     ): User!
@@ -88,7 +88,14 @@ const resolvers = {
   Mutation: {
     createUser: async (
       parent: any,
-      { firstName, lastName, contactNumber, age, country, email, password }: User
+      {
+        firstName,
+        lastName,
+        contactNumber,
+        age,
+        /*country,*/ email,
+        password,
+      }: User
     ) => {
       const users = await readDbFile();
 
@@ -98,7 +105,7 @@ const resolvers = {
         lastName,
         contactNumber,
         age,
-        country,
+        // country,
         email,
         password,
       };
@@ -111,7 +118,15 @@ const resolvers = {
     },
     updateUser: async (
       parent: any,
-      { id, firstName, lastName, contactNumber, age, country, email, password }: User
+      {
+        id,
+        firstName,
+        lastName,
+        contactNumber,
+        age,
+        /*country,*/ email,
+        password,
+      }: User
     ) => {
       const users = await readDbFile();
 
@@ -137,9 +152,9 @@ const resolvers = {
         user.age = age;
       }
 
-      if (country) {
-        user.country = country;
-      }
+      // if (country) {
+      //   user.country = country;
+      // }
 
       if (email) {
         user.email = email;

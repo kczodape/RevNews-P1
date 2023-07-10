@@ -4,7 +4,7 @@ export interface Users {
   lastName: string;
   email: string;
   password: string;
-  country: string;
+  // country: string;
   age: number;
   contactNumber: string;
 }
