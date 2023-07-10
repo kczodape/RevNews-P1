@@ -1,57 +1,43 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { SearchService } from 'src/app/services/search.service';
 import * as moment from 'moment';
-import { NewsService } from 'src/app/services/news.service';
-import { SharedServiceService } from 'src/app/services/shared-service.service';
-// import { TranslationService } from 'src/app/services/translation.service';
 declare var google: any; // Declare the 'google' variable
 
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss'],
+  styleUrls: ['./articles.component.scss']
 })
 export class ArticlesComponent implements OnInit {
-  @ViewChild(ArticlesComponent) articlesComponent!: ArticlesComponent;
-
-  filterArticlesByLanguage(language: string) {
-    throw new Error('Method not implemented.');
-  }
-  public articles: any[] = [
-    // More articles...
-  ];
-
-  filteredArticles: any[] = [];
-  searchKeyword: string = '';
-  keyword: any[] = [];
+  public articles: any[] = [];
+  public filteredArticles: any[] = [];
+  public searchKeyword: string = '';
+  public keyword: any[] = [];
   public searchQuery: string = '';
-  category: string = '';
-  country: string | any;
+  public category: string = '';
+  public country: string | any;
+
+  public currentPage: number = 0;
+  public pageSize: number = 5;
+  public totalItems: number = 0;
 
   constructor(
     private articleService: ArticleService,
-    private searchService: SearchService,
-    private newsService: NewsService,
-    // private translationService: TranslationService
+    private searchService: SearchService
   ) {}
 
   ngOnInit() {
     this.articleService.selectedCountry$.subscribe((selectedCountry) => {
-      this.fetchArticles(
-        selectedCountry,
-        this.articleService.getSelectedCategory()
-      );
       this.country = selectedCountry;
+      this.fetchArticles(selectedCountry, this.articleService.getSelectedCategory());
     });
 
     this.articleService.selectedCategory$.subscribe((selectedCategory) => {
-      this.fetchArticles(
-        this.articleService.getSelectedCountry(),
-        selectedCategory
-      );
       this.category = selectedCategory;
+      this.fetchArticles(this.articleService.getSelectedCountry(), selectedCategory);
     });
+
     this.articleService
       .getArticles(
         this.articleService.getSelectedCountry(),
@@ -61,27 +47,22 @@ export class ArticlesComponent implements OnInit {
         this.articles = data.articles;
         this.filterArticles();
       });
+
     this.searchService.getSearchKeyword().subscribe((keyword) => {
       this.searchKeyword = keyword;
       this.filterArticles();
     });
 
-    // this.translationService.chnageLanguage('en');
-  }
-
-  public translateTo(event: any): void {
-    const language = event.target.value;
-    // this.translationService.chnageLanguage(language);
+    this.filterArticles();
   }
 
   fetchArticles(country: string, category: string) {
-    this.articleService
-      .getArticles(country, category)
-      .subscribe((data: any) => {
-        this.articles = data.articles;
-        this.filterArticles();
-      });
+    this.articleService.getArticles(country, category).subscribe((data: any) => {
+      this.articles = data.articles;
+      this.filterArticles();
+    });
   }
+
   filterArticles() {
     if (this.searchKeyword) {
       this.filteredArticles = this.articles.filter((article) =>
@@ -90,7 +71,15 @@ export class ArticlesComponent implements OnInit {
     } else {
       this.filteredArticles = this.articles;
     }
+
+    this.totalItems = this.filteredArticles.length;
   }
+
+  getPaginatedArticles(): any[] {
+    const startIndex = this.currentPage * this.pageSize;
+    return this.filteredArticles.slice(startIndex, startIndex + this.pageSize);
+  }
+
   formatDate(dateString: string): string {
     const dateObj = moment(dateString);
     if (dateObj.isValid()) {
@@ -99,6 +88,7 @@ export class ArticlesComponent implements OnInit {
       return 'Invalid Date';
     }
   }
+
   public performSearch(): void {
     // Filter the articles based on the search query
     this.filteredArticles = this.articles.filter(
@@ -107,6 +97,8 @@ export class ArticlesComponent implements OnInit {
         article.date.toISOString().includes(this.searchQuery) ||
         article.author.toLowerCase().includes(this.searchQuery.toLowerCase())
     );
+    this.currentPage = 0;
+    this.totalItems = this.filteredArticles.length;
   }
 
   public truncateWord(title: string, limit: number): string {
@@ -117,10 +109,15 @@ export class ArticlesComponent implements OnInit {
       return title;
     }
   }
-  public googleTranslateElementInit(){
+
+  public onPageChanged(page: number): void {
+    this.currentPage = page;
+  }
+
+   public googleTranslateElementInit() {
     new google.translate.TranslateElement(
-      {pageLanguage: 'en'},
+      { pageLanguage: 'en' },
       'google_translate_element'
-  );
+    );
   }
 }
