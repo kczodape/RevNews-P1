@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GraphQLModule } from './graphql.module';
-import {  HttpClientModule } from '@angular/common/http';
+import {  HttpClientModule, HttpClient } from '@angular/common/http';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './components/login/login.component';
@@ -24,9 +24,13 @@ import { UpdatedialogComponent } from './components/updatedialog/updatedialog.co
 import { ArticlesComponent } from './components/articles/articles.component';
 import {MatMenuModule} from '@angular/material/menu';
 
-// import {TranslastLoader, TranslateModule} from '@ngx-translate/http-loader'
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
-// import { TranslateHttpLoader } from '@ngx-translate/http-loader/dist/public-api';
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +50,13 @@ import {MatMenuModule} from '@angular/material/menu';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
+    TranslateModule.forRoot({
+      loader:{
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient],
+      },
+    }),
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,

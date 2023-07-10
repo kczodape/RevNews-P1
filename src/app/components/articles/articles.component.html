@@ -1,17 +1,17 @@
 <h1>Hot News - Top headlines from {{ category }} category {{ country }}</h1>
+<button (click)="googleTranslateElementInit()">click</button>
+<div id="google_translate_element"></div>
+
 <div class="article-grid">
   <div class="article-card" *ngFor="let article of filteredArticles">
-    <!-- <img class="article-image" [src]="article.imageUrl" alt="Article Image"> -->
     <img
       *ngIf="article.urlToImage"
       [src]="article.urlToImage"
-      alt="Article Image"
-    />
+      alt="Article Image" />
     <img
       *ngIf="!article.urlToImage"
       src="assets/no_img.jpg"
-      alt="Default Image"
-    />
+      alt="Default Image" />
     <div class="article-content">
       <h2 class="article-title">{{ article.title }}</h2>
       <p>Date: {{ formatDate(article.date) }}</p>
@@ -20,9 +20,7 @@
         {{ article.description }}
       </p>
 
-      <a class="read-more-btn" [href]="article.url" target="_blank"
-        >Read More</a
-      >
+      <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
     </div>
   </div>
   <p class="no-articles-found" *ngIf="filteredArticles.length === 0">

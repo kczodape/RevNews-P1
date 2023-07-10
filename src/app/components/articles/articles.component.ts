@@ -4,6 +4,9 @@ import { SearchService } from 'src/app/services/search.service';
 import * as moment from 'moment';
 import { NewsService } from 'src/app/services/news.service';
 import { SharedServiceService } from 'src/app/services/shared-service.service';
+// import { TranslationService } from 'src/app/services/translation.service';
+declare var google: any; // Declare the 'google' variable
+
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
@@ -29,7 +32,8 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private searchService: SearchService,
-    private newsService: NewsService
+    private newsService: NewsService,
+    // private translationService: TranslationService
   ) {}
 
   ngOnInit() {
@@ -61,6 +65,13 @@ export class ArticlesComponent implements OnInit {
       this.searchKeyword = keyword;
       this.filterArticles();
     });
+
+    // this.translationService.chnageLanguage('en');
+  }
+
+  public translateTo(event: any): void {
+    const language = event.target.value;
+    // this.translationService.chnageLanguage(language);
   }
 
   fetchArticles(country: string, category: string) {
@@ -105,5 +116,11 @@ export class ArticlesComponent implements OnInit {
     } else {
       return title;
     }
+  }
+  public googleTranslateElementInit(){
+    new google.translate.TranslateElement(
+      {pageLanguage: 'en'},
+      'google_translate_element'
+  );
   }
 }
