@@ -7,7 +7,7 @@ declare var google: any; // Declare the 'google' variable
 @Component({
   selector: 'app-articles',
   templateUrl: './articles.component.html',
-  styleUrls: ['./articles.component.scss']
+  styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
   public articles: any[] = [];
@@ -30,12 +30,18 @@ export class ArticlesComponent implements OnInit {
   ngOnInit() {
     this.articleService.selectedCountry$.subscribe((selectedCountry) => {
       this.country = selectedCountry;
-      this.fetchArticles(selectedCountry, this.articleService.getSelectedCategory());
+      this.fetchArticles(
+        selectedCountry,
+        this.articleService.getSelectedCategory()
+      );
     });
 
     this.articleService.selectedCategory$.subscribe((selectedCategory) => {
       this.category = selectedCategory;
-      this.fetchArticles(this.articleService.getSelectedCountry(), selectedCategory);
+      this.fetchArticles(
+        this.articleService.getSelectedCountry(),
+        selectedCategory
+      );
     });
 
     this.articleService
@@ -57,10 +63,12 @@ export class ArticlesComponent implements OnInit {
   }
 
   fetchArticles(country: string, category: string) {
-    this.articleService.getArticles(country, category).subscribe((data: any) => {
-      this.articles = data.articles;
-      this.filterArticles();
-    });
+    this.articleService
+      .getArticles(country, category)
+      .subscribe((data: any) => {
+        this.articles = data.articles;
+        this.filterArticles();
+      });
   }
 
   filterArticles() {
@@ -114,7 +122,7 @@ export class ArticlesComponent implements OnInit {
     this.currentPage = page;
   }
 
-   public googleTranslateElementInit() {
+  public googleTranslateElementInit() {
     new google.translate.TranslateElement(
       { pageLanguage: 'en' },
       'google_translate_element'

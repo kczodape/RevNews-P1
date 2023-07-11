@@ -27,8 +27,8 @@ export class ResetdialogComponent {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     this.user = this.sessionService.getUser();
-    console.log(this.user);
-    this.dbPassword = this.user.password;
+    console.log(this?.user);
+    this.dbPassword = this.user?.password;
     console.log(this.dbPassword);
   }
 

@@ -6,14 +6,14 @@
         <img src="assets/avatar.webp" alt="" />
       </div>
       <div class="bio">
-        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
         <div class="center">
           <div class="name">
             <h3>
-              First Name: <span>{{ user.firstName }}</span>
+              First Name: <span>{{ user?.firstName }}</span>
             </h3>
             <h3>
-              Contact number: <span>{{ user.contactNumber }}</span>
+              Contact number: <span>{{ user?.contactNumber }}</span>
             </h3>
             <!-- <h3>
               Country: <span>{{ user.country }}</span>
@@ -21,16 +21,16 @@
           </div>
           <div class="countryage">
             <h3>
-              Last Name: <span>{{ user.lastName }}</span>
+              Last Name: <span>{{ user?.lastName }}</span>
             </h3>
             <h3>
-              Age: <span>{{ user.age }}</span>
+              Age: <span>{{ user?.age }}</span>
             </h3>
           </div>
         </div>
         <div class="numemail">
           <h3>
-            Email: <span>{{ user.email }}</span>
+            Email: <span>{{ user?.email }}</span>
           </h3>
           <h3>
             <!-- Contact number: <span>{{ user.contactNumber }}</span> -->

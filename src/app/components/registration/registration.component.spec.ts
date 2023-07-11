@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RegistrationComponent } from './registration.component';
+import { ApolloTestingModule } from 'apollo-angular/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { GeolocationService } from 'src/app/services/geolocation.service';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -8,7 +12,10 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RegistrationComponent ]
+      imports: [ApolloTestingModule, HttpClientTestingModule, ReactiveFormsModule], // Import ApolloTestingModule here
+      declarations: [ RegistrationComponent ],
+      providers: [GeolocationService] // Add any other required providers
+
     })
     .compileComponents();
 

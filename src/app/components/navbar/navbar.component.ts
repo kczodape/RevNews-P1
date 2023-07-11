@@ -12,6 +12,7 @@ import { NewsService } from 'src/app/services/news.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
+
 export class NavbarComponent implements OnInit {
   user: any;
   countries: any[] = [];

@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { ApolloTestingModule } from 'apollo-angular/testing';
 import { DeletedialogComponent } from './deletedialog.component';
 
 describe('DeletedialogComponent', () => {
@@ -8,9 +9,10 @@ describe('DeletedialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DeletedialogComponent ]
-    })
-    .compileComponents();
+      imports: [MatDialogModule, ApolloTestingModule],
+      declarations: [DeletedialogComponent],
+      providers: [{ provide: MatDialogRef, useValue: {} }],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DeletedialogComponent);
     component = fixture.componentInstance;

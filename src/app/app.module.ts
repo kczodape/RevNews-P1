@@ -27,10 +27,10 @@ import { ResetdialogComponent } from './components/resetdialog/resetdialog.compo
 import { UpdatedialogComponent } from './components/updatedialog/updatedialog.component';
 import { ArticlesComponent } from './components/articles/articles.component';
 import { MatMenuModule } from '@angular/material/menu';
-
 // import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatPaginatorModule
+import { ResetPasswordService } from './services/reset-password.service';
 
 
 // export function HttpLoaderFactory(http: HttpClient) {
@@ -74,7 +74,7 @@ import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatP
     MatSelectModule,
     MatMenuModule,
   ],
-  providers: [],
+  providers: [ResetPasswordService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
