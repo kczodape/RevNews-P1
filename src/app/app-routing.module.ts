@@ -6,18 +6,19 @@ import { RegistrationComponent } from './components/registration/registration.co
 import { IndexComponent } from './components/index/index.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './components/profile/profile.component';
+import { SavedArticlesComponent } from './components/saved-articles/saved-articles.component';
 
 const routes: Routes = [
-  {path:"", component: LandingComponent},
-  {path:"login", component: LoginComponent},
-  {path:"registration", component: RegistrationComponent},
-  {path:"index", component: IndexComponent, canActivate:[AuthGuard]},
-  {path: "profile", component: ProfileComponent}
-  // {path: '**', redirectTo: ''},
+  { path: '', component: LandingComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegistrationComponent },
+  { path: 'index', component: IndexComponent, canActivate: [AuthGuard] },
+  { path: 'profile', component: ProfileComponent },
+  { path: 'saved-articles', component: SavedArticlesComponent }, // {path: '**', redirectTo: ''},
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

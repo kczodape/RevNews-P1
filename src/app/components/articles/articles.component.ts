@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { SearchService } from 'src/app/services/search.service';
 import * as moment from 'moment';
+import { NewsService } from 'src/app/services/news.service';
+
 declare var google: any; // Declare the 'google' variable
 
 @Component({
@@ -28,6 +30,7 @@ export class ArticlesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    // this.googleTranslateElementInit();
     this.articleService.selectedCountry$.subscribe((selectedCountry) => {
       this.country = selectedCountry;
       this.fetchArticles(
@@ -127,5 +130,9 @@ export class ArticlesComponent implements OnInit {
       { pageLanguage: 'en' },
       'google_translate_element'
     );
+  }
+  saveArticle(article: any): void {
+    this.articleService.saveArticle(article);
+    console.log('Article saved successfully!');
   }
 }

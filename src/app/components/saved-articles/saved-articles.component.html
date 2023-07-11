@@ -1,0 +1,19 @@
+<app-navbar></app-navbar>
+<div class="article-grid">
+  <div class="flex" *ngIf="savedArticles.length > 0; else noArticles">
+    <div class="article-card" *ngFor="let article of savedArticles">
+    <img [src]="article.imageUrl" alt="Article Image">
+    <div class="article-content">
+      <h2 class="article-title">{{truncateTitle(article.title, 7)}}</h2>
+      <p>Date: {{ formatDate(article.date) }}</p>
+      <p>Source: {{ article.source.name }}</p>
+      <p>Author: {{ article.author || 'Unknown' }}</p>
+      <p class="article-description">{{truncateDescription(article.description, 12)}}</p>
+      <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
+
+    </div>
+  </div>
+</div>
+<ng-template #noArticles>
+  <p>No saved articles found.</p>
+</ng-template>

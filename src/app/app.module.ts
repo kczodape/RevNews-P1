@@ -31,6 +31,8 @@ import { MatMenuModule } from '@angular/material/menu';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatPaginatorModule
 import { ResetPasswordService } from './services/reset-password.service';
+import { SavedArticlesComponent } from './components/saved-articles/saved-articles.component';
+import { SessionService } from './services/session.service';
 
 
 // export function HttpLoaderFactory(http: HttpClient) {
@@ -50,6 +52,7 @@ import { ResetPasswordService } from './services/reset-password.service';
     ResetdialogComponent,
     UpdatedialogComponent,
     ArticlesComponent,
+    SavedArticlesComponent
   ],
   imports: [
     BrowserModule,
@@ -74,7 +77,7 @@ import { ResetPasswordService } from './services/reset-password.service';
     MatSelectModule,
     MatMenuModule,
   ],
-  providers: [ResetPasswordService],
+  providers: [ResetPasswordService, SessionService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

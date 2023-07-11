@@ -16,6 +16,7 @@ export class ArticleService {
   private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
   // private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
   private apiUrl = 'https://newsapi.org/v2';
+  private apiUrlArticle = 'http://localhost:3002/articles';
   private selectedCountrySubject = new BehaviorSubject<string>('us');
   private selectedCategorySubject = new BehaviorSubject<string>('general');
 
@@ -56,4 +57,25 @@ export class ArticleService {
     const url = `${this.apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${this.apiKey}`;
     return this.http.get(url);
   }
+  saveArticle(article: any): void {
+    const userEmail = sessionStorage.getItem('email');
+    const url = 'http://localhost:3002/articles';
+    const updatedArticle = {
+      email: userEmail,
+      ...article
+    };
+    this.http.post(url, updatedArticle).subscribe(() => {
+      alert("Articles saved successfully")
+    },
+      (error) => {
+        console.error('Failed to save article:', error);
+      }
+    )
+    // this.savedArticles.push(article);
+  }
+
+  getSavedArticles(userEmail: string){
+    const url = `${this.apiUrlArticle}?email=${userEmail}`;
+    return this.http.get(url);
+  }
 }
