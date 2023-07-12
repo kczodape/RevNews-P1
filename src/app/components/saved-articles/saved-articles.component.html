@@ -1,19 +1,28 @@
-<app-navbar></app-navbar>
-<div class="article-grid">
+<h1>Saved Articles</h1><div class="article-grid">
   <div class="flex" *ngIf="savedArticles.length > 0; else noArticles">
-    <div class="article-card" *ngFor="let article of savedArticles">
-    <img [src]="article.imageUrl" alt="Article Image">
-    <div class="article-content">
-      <h2 class="article-title">{{truncateTitle(article.title, 7)}}</h2>
-      <p>Date: {{ formatDate(article.date) }}</p>
-      <p>Source: {{ article.source.name }}</p>
-      <p>Author: {{ article.author || 'Unknown' }}</p>
-      <p class="article-description">{{truncateDescription(article.description, 12)}}</p>
-      <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
 
+    <div class="article-card" *ngFor="let article of savedArticles">
+      <span>{{ article.source.name }}</span>
+      <img *ngIf="article.urlToImage" [src]="article.urlToImage"
+        alt="Article Image" />
+      <img *ngIf="!article.urlToImage" src="assets/no_img.jpg"
+        alt="Default Image" />
+      <div class="article-content">
+        <h2 class="article-title">{{truncateTitle(article.title, 5)}}</h2>
+        <p>Date: {{ formatDate(article.date) }}</p>
+        <p>Source: {{ article.source.name }}</p>
+        <p>Author: {{ article.author || 'Unknown' }}</p>
+        <p class="article-description">{{truncateDescription(article.description,
+          10)}}</p>
+        <div class="btns">
+          <a class="read-more-btn" [href]="article.url" target="_blank">Read
+            More</a>
+          <a class="button ghost" (click)="deleteArticle(article.id)"><mat-icon>delete_outline</mat-icon>
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-<ng-template #noArticles>
-  <p>No saved articles found.</p>
-</ng-template>
+  <ng-template #noArticles>
+    <p>No saved articles found.</p>
+  </ng-template>

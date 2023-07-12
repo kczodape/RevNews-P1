@@ -112,12 +112,30 @@ export class ArticlesComponent implements OnInit {
     this.totalItems = this.filteredArticles.length;
   }
 
-  public truncateWord(title: string, limit: number): string {
-    const words = title.split(' ');
+  public truncateTitle(title: string, limit: number): string {
+    if (!title || title.length < 7) {
+      return '';
+    }
+
+    const words = title.trim().split(/\s+/);
     if (words.length > limit) {
       return words.slice(0, limit).join(' ') + '...';
     } else {
       return title;
+    }
+  }
+  public truncateDescription(description: string, limit: number): string {
+    const defaultDescription = 'No description available.';
+
+    if (!description || description.length < 12) {
+      return defaultDescription;
+    }
+
+    const words = description.trim().split(/\s+/);
+    if (words.length > limit) {
+      return words.slice(0, limit).join(' ') + '...';
+    } else {
+      return description;
     }
   }
 

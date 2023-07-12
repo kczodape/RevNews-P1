@@ -13,8 +13,8 @@ export class ArticleService {
     throw new Error('Method not implemented.');
   }
   // private apiKey = '';
-  private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
-  // private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
+  // private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
+  private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
   private apiUrl = 'https://newsapi.org/v2';
   private apiUrlArticle = 'http://localhost:3002/articles';
   private selectedCountrySubject = new BehaviorSubject<string>('us');
@@ -78,4 +78,9 @@ export class ArticleService {
     const url = `${this.apiUrlArticle}?email=${userEmail}`;
     return this.http.get(url);
   }
+deleteArticle(articleId: number): Observable<any> {
+  const url = `http://localhost:3002/articles/${articleId}`;
+  return this.http.delete(url);
+}
+
 }

@@ -330,3 +330,176 @@ button:hover .arrow:before {
   }
 }
 //===================================================
+
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {
+  .nav {
+    height: 70px;
+    .logo {
+      img {
+        height: 60px;
+        margin-top: 8px;
+      }
+      h1 {
+        font-size: 25px;
+        align-self: center;
+      }
+    }
+    .btns {
+      width: 50%;
+    }
+  }
+  .container {
+    flex-direction: column-reverse;
+    .textFlow {
+      width: 98%;
+      h1 {
+        font-size: 2.5rem;
+        line-height: 1.7;
+      }
+      p {
+        font-size: 18px;
+       
+      }
+    }
+    .svg {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Small screen devices (595px and above) */
+@media only screen and (min-width: 595px) {
+  .nav {
+    height: 70px;
+    .logo {
+      img {
+        height: 60px;
+        margin-top: 8px;
+      }
+      h1 {
+        font-size: 25px;
+        align-self: center;
+      }
+    }
+    .btns {
+      width: 50%;
+    }
+  }
+  .container {
+    flex-direction: column-reverse;
+    .textFlow {
+      width: 98%;
+      h1 {
+        font-size: 2.5rem;
+        line-height: 1.7;
+      }
+      p {
+        font-size: 18px;
+       
+      }
+      button {
+        font-size: 12px;
+        letter-spacing: 0;
+      }
+    }
+    .svg {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+  .nav {
+    height: 70px;
+    .logo {
+      img {
+        height: 60px;
+        margin-top: 8px;
+      }
+      h1 {
+        font-size: 25px;
+        align-self: center;
+      }
+    }
+    .btns {
+      width: 50%;
+    }
+  }
+  .container {
+    flex-direction: row;
+    .textFlow {
+      width: 98%;
+      h1 {
+        font-size: 2.5rem;
+        line-height: 1.7;
+      }
+      p {
+        font-size: 18px;
+       
+      }
+      button {
+        font-size: 22px;
+        letter-spacing: 1;
+      }
+    }
+    .svg {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+  .nav {
+    height: 70px;
+    .logo {
+      img {
+        height: 60px;
+        margin-top: 8px;
+      }
+      h1 {
+        font-size: 25px;
+        align-self: center;
+      }
+    }
+    .btns {
+      width: 20%;
+    }
+  }
+  .container {
+    flex-direction: row;
+    margin-top: 25px;
+    .textFlow {
+      width: 98%;
+      h1 {
+        font-size: 2.5rem;
+        line-height: 1.7;
+      }
+      p {
+        font-size: 18px;
+       
+      }
+      button {
+        font-size: 22px;
+        letter-spacing: 1;
+      }
+    }
+    .svg {
+      width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+}

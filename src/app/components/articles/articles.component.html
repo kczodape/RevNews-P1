@@ -1,26 +1,32 @@
-<h1>Hot News - Top headlines from {{ category }} category {{ country }}</h1>
+<h1>HotNews - Top headlines from {{ category }} category {{ country }}</h1>
 <!-- <div id="google_translate_element"></div>
 <button (click)="googleTranslateElementInit()">click</button> -->
 <div class="article-grid">
   <div class="article-card" *ngFor="let article of getPaginatedArticles()">
+    <span>{{ article.source.name }}</span>
     <img *ngIf="article.urlToImage" [src]="article.urlToImage"
       alt="Article Image" />
     <img *ngIf="!article.urlToImage" src="assets/no_img.jpg" alt="Default Image" />
     <div class="article-content">
-      <h2 class="article-title">{{ article.title }}</h2>
+      <h2 class="article-title">{{ truncateTitle(article.title, 5) }}</h2>
       <p>Date: {{ formatDate(article.date) }}</p>
       <p>Author: {{ article.author || 'Unknown' }}</p>
-      <p class="article-description">{{ article.description }}</p>
-      <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
-      <button (click)="saveArticle(article)">Save</button>
+      <p class="article-description">{{ truncateDescription(article.description,
+        10) }}</p>
+      <div class="btns">
+        <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
+        <a class="button ghost" (click)="saveArticle(article)"><mat-icon>save_alt</mat-icon>
+        </a>
+      </div>
+      <!-- <a class="read-more-btn save-news-btn" (click)="saveArticle(article)">Save</a> -->
     </div>
   </div>
   <p class="no-articles-found" *ngIf="filteredArticles.length === 0">No articles
     found.</p>
 </div>
 
-<!-- <mat-paginator
+<mat-paginator
   [length]="totalItems"
   [pageSize]="pageSize"
   [pageSizeOptions]="[5, 10, 25, 50]"
-  (page)="onPageChanged($event.pageIndex)"></mat-paginator> -->
+  (page)="onPageChanged($event.pageIndex)"></mat-paginator>

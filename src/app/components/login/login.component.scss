@@ -1,91 +1,158 @@
 .head {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  border-bottom: 5px solid purple;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  img {
+    width: 100px;
+  }
+  h1 {
+    text-align: center;
+    background: linear-gradient(to right, red, blue);
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
+    font-size: 2rem;
+  }
+}
+
+.login {
+  display: flex;
+  width: 98%;
+  margin-left: auto;
+  margin-right: auto;
+  .svg {
     display: flex;
-    justify-content: space-evenly;
-    width: 90%;
-    border-bottom: 5px solid purple;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 0;
-    img {
-      width: 100px;
+    align-self: center;
+    width: 35%;
+    img{
+      width: 75%;
     }
+  }
+  .login_form {
+    width: 46%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     h1 {
       text-align: center;
       background: linear-gradient(to right, red, blue);
       -webkit-text-fill-color: transparent;
       -webkit-background-clip: text;
     }
-  }
-  
-  .login {
-    display: flex;
-    width: 98%;
-    margin-left: auto;
-    margin-right: auto;
-    .svg {
-      width: 46%;
-      img{
-        height: 85%;
-      }
+    label {
+      font-size: 13px;
+      margin: 5px 0;
+      color: darkgray;
     }
-    .login_form {
-      width: 46%;
+    #invalid {
+      color: red;
+      text-align: center;
+    }
+    form {
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      h1 {
-        text-align: center;
-        background: linear-gradient(to right, red, blue);
-        -webkit-text-fill-color: transparent;
-        -webkit-background-clip: text;
-      }
-      #invalid {
-        color: red;
-        text-align: center;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        p{
-          text-align: center;
-          color: red;
-        }
-        input,
-        select {
-          border: none;
-          border-bottom: 1px solid lightgrey;
-          box-shadow: 0px 5px 7px -2px lightgrey;
-          padding: 10px 5px;
-          border-radius: 0 0 5px 5px;
-          outline: none;
-          margin-bottom: 10px;
-        }
-        i {
-          cursor: pointer;
-          margin-bottom: 15px;
-          width: 17px;
-        }
-        button {
-          padding: 8px 5px;
-          border: 1px solid purple;
-          border-radius: 5px;
-          background-color: #fff;
-          font-size: 16px;
-          transition: 0.3s ease;
-          cursor: pointer;
-          &:hover {
-            background-color: #302ea3;
-            color: white;
-            border: 1px solid #302ea3;
-          }
-        }
-      }
       p {
-        a {
-          text-decoration: none;
-          border-bottom: 1px solid blue;
-          padding-bottom: 3px;
+        text-align: center;
+        color: red;
+      }
+      input,
+      select {
+        border: none;
+        border-bottom: 2px solid #6868eb;
+        box-shadow: 0px -2px 7px -2px lightgrey;
+        padding: 10px 5px;
+        border-radius: 5px 5px 0 0;
+        outline: none;
+        margin-bottom: 10px;
+      }
+      i {
+        cursor: pointer;
+        margin-bottom: 15px;
+        width: 17px;
+      }
+      button {
+        padding: 8px 5px;
+        border: 1px solid #6868eb;
+        border-radius: 5px;
+        background-color: #fff;
+        font-size: 16px;
+        transition: 0.3s ease;
+        cursor: pointer;
+        &:hover {
+          background-color: #302ea3;
+          color: white;
+          border: 1px solid #302ea3;
         }
       }
     }
+    p {
+      a {
+        text-decoration: none;
+        border-bottom: 1px solid blue;
+        padding-bottom: 3px;
+      }
+    }
   }
+}
+
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {
+  .login {
+    position: relative;
+
+    .svg {
+      display: none;
+    }
+    .login_form {
+      width: 60%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 10%;
+    }
+  }
+}
+
+/* Small screen devices (595px and above) */
+@media only screen and (min-width: 595px) {
+  .login {
+    flex-direction: column;
+    width: 100%;
+    .svg {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 5%;
+    }
+    .login_form {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+  .login {
+    flex-direction: row;
+    width: 95%;
+    margin-top: 5%;
+  }
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+  .login {
+    margin-top: 4%;
+    .svg {
+      margin-top: 0%;
+    }
+  }
+}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1200px) {
+}

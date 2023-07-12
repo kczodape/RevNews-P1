@@ -1,9 +1,9 @@
-<app-navbar></app-navbar>
+<h1>Welcome {{user.firstName}} to your profile</h1>
 <div class="main">
   <div class="left">
     <div class="card">
       <div class="img">
-        <img src="assets/avatar.webp" alt="" />
+        <img src="assets/avatar.webp" alt />
       </div>
       <div class="bio">
         <h2>{{ user?.firstName }} {{ user?.lastName }}</h2>
@@ -44,13 +44,13 @@
         <button class="reset" (click)="openDialogReset('1000ms', '800ms')">
           Reset Password
         </button>
-        <button class="delete" (click)="openDialog('1000ms', '800ms')">
-          Delete
-        </button>
+        <a class="button ghost" (click)="openDialog('1000ms', '800ms')">
+          <mat-icon>delete_outline</mat-icon>
+        </a>
       </div>
     </div>
   </div>
   <div class="right">
-    <img src="assets/profile_svg.svg" alt="" />
+    <img src="assets/profile_svg.svg" alt />
   </div>
 </div>

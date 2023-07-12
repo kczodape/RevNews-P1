@@ -56,4 +56,18 @@ export class SavedArticlesComponent implements OnInit {
       return description;
     }
   }
+
+  deleteArticle(articleId: number): void {
+    this.articleService.deleteArticle(articleId).subscribe(
+      () => {
+        // Remove the deleted article from the savedArticles array
+        this.savedArticles = this.savedArticles.filter(
+          (article) => article.id !== articleId
+        );
+      },
+      (error) => {
+        console.error('Failed to delete article:', error);
+      }
+    );
+  }
 }
