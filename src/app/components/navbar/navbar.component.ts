@@ -24,9 +24,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     public sessionService: SessionService,
-    private router: Router,
-    private articleService: ArticleService,
-    private searchService: SearchService
+    public router: Router,
+    public articleService: ArticleService,
+    public searchService: SearchService
   ) {
     this.user = this.sessionService.getUser();
   }
