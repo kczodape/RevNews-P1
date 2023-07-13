@@ -1,7 +1,13 @@
+
 <div class="head">
   <h1>Welcome to HotNews</h1>
 </div>
-
+<div class="toggle" style="display: flex;
+justify-content: end;
+width: 95%;
+margin-top: 1%;">
+  <app-toogle></app-toogle>
+</div>
 <div class="login">
   <div class="svg">
     <img src="assets/login_svg.svg" alt />
@@ -10,14 +16,14 @@
     <h1>Login Here</h1>
     <form (submit)="login()">
       <p>{{ alertMessage }}</p>
-      <label for="">Enter Email</label>
+      <label for>Enter Email</label>
       <input
-      type="email"
-      id="email"
-      placeholder="Email*"
-      [(ngModel)]="email"
-      name="email" />
-      <label for="">Enter Password</label>
+        type="email"
+        id="email"
+        placeholder="Email*"
+        [(ngModel)]="email"
+        name="email" />
+      <label for>Enter Password</label>
       <input
         type="{{ isPasswordVisible ? 'text' : 'password' }}"
         id="password"

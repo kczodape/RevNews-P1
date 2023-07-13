@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class SearchService {
-
-  private searchKeyword: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  private searchKeyword: BehaviorSubject<string> = new BehaviorSubject<string>(
+    ''
+  );
 
   setSearchKeyword(keyword: string) {
     this.searchKeyword.next(keyword);
@@ -14,5 +15,5 @@ export class SearchService {
 
   getSearchKeyword(): Observable<string> {
     return this.searchKeyword.asObservable();
-  }
+  }
 }

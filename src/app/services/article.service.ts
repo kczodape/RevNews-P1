@@ -12,9 +12,10 @@ export class ArticleService {
   filterArticles() {
     throw new Error('Method not implemented.');
   }
-  // private apiKey = '';
+  private apiKey = '';
   // private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
-  private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
+  // private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
+  // private apiKey = 'd6d78a72ad8e4504a0d049ca6f63b8a8';
   private apiUrl = 'https://newsapi.org/v2';
   private apiUrlArticle = 'http://localhost:3002/articles';
   private selectedCountrySubject = new BehaviorSubject<string>('us');
@@ -62,25 +63,25 @@ export class ArticleService {
     const url = 'http://localhost:3002/articles';
     const updatedArticle = {
       email: userEmail,
-      ...article
+      ...article,
     };
-    this.http.post(url, updatedArticle).subscribe(() => {
-      alert("Articles saved successfully")
-    },
+    this.http.post(url, updatedArticle).subscribe(
+      () => {
+        alert('Articles saved successfully');
+      },
       (error) => {
         console.error('Failed to save article:', error);
       }
-    )
+    );
     // this.savedArticles.push(article);
   }
 
-  getSavedArticles(userEmail: string){
+  getSavedArticles(userEmail: string) {
     const url = `${this.apiUrlArticle}?email=${userEmail}`;
     return this.http.get(url);
-  }
-deleteArticle(articleId: number): Observable<any> {
-  const url = `http://localhost:3002/articles/${articleId}`;
-  return this.http.delete(url);
-}
-
+  }
+  deleteArticle(articleId: number): Observable<any> {
+    const url = `http://localhost:3002/articles/${articleId}`;
+    return this.http.delete(url);
+  }
 }

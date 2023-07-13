@@ -4,31 +4,16 @@
       "email": "ee18kczodapejd@gmail.com",
       "source": {
         "id": null,
-        "name": "CNBC"
+        "name": "NDTV News"
       },
-      "author": "Kevin Breuninger",
-      "title": "Trump opposes quick trial date in classified documents case - CNBC",
-      "description": "Former President Donald Trump asked a federal court to hold off on setting a date for the criminal trial over his handling of classified documents.",
-      "url": "https://www.cnbc.com/2023/07/11/trump-nauta-want-classified-documents-trial-delayed.html",
-      "urlToImage": "https://image.cnbcfm.com/api/v1/image/107267700-1688666871973-gettyimages-1509128970-AA_06072023_1262568.jpeg?v=1689046408&w=1920&h=1080",
-      "publishedAt": "2023-07-11T03:33:00Z",
-      "content": "Former President Donald Trump on Monday night asked a federal court to hold off on setting a date for the criminal trial over his handling of classified documents, arguing that the unprecedented case… [+2897 chars]",
+      "author": "NDTV Sports Desk",
+      "title": "\"Without Political Agenda Or Bias...\": Rahul Dravid Opens Up On Tough Selection Calls - NDTV Sports",
+      "description": "Rahul Dravid admitted that making selection calls is the toughest part of the job for a coach.",
+      "url": "https://sports.ndtv.com/cricket/without-political-agenda-or-bias-rahul-dravid-opens-up-on-tough-selection-calls-4199298",
+      "urlToImage": "https://c.ndtvimg.com/2023-07/531bjna_rahul-dravid_650x300_12_July_23.jpg",
+      "publishedAt": "2023-07-12T07:30:41Z",
+      "content": "While critics will always find ways to raise questions, the job of a coach remains incredibly hard. When it comes to making selection calls, be it in the playing XI or for the squad as a whole, the c… [+2353 chars]",
       "id": 1
-    },
-    {
-      "email": "ee18kczodapejd@gmail.com",
-      "source": {
-        "id": "usa-today",
-        "name": "USA Today"
-      },
-      "author": ", USA TODAY",
-      "title": "New York flooding, warnings for New England: Weather forecast Monday - USA TODAY",
-      "description": "Residents from North Carolina to New Hampshire can expect heavy rains on Monday, with a risk of flooding and severe thunderstorms.",
-      "url": "https://www.usatoday.com/story/news/weather/2023/07/10/monday-weather-updates/70395913007/",
-      "urlToImage": "https://www.gannett-cdn.com/presto/2023/06/18/USAT/5bd895c2-7d2e-4723-b250-984ea60b63bf-AP_Florida_Flooding.jpg?auto=webp&crop=2499,1406,x0,y98&format=pjpg&width=1200",
-      "publishedAt": "2023-07-11T03:22:30Z",
-      "content": "Monday was another rough day for weather across the nation, as the Northeast saw yet more heavy, flooding rain, and tens of millions of Americans dealt with sweltering, dangerous heat.\r\nVermont was i… [+6190 chars]",
-      "id": 2
     }
   ]
 }

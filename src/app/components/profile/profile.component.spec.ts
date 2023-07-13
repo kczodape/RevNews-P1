@@ -7,6 +7,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
+import { ToogleComponent } from '../toogle/toogle.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 describe('ProfileComponent', () => {
   let component: ProfileComponent;
@@ -14,8 +16,8 @@ describe('ProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatDialogModule, HttpClientModule, MatToolbarModule, MatIconModule, MatMenuModule, FormsModule],
-      declarations: [ProfileComponent, NavbarComponent],
+      imports: [MatDialogModule, HttpClientModule, MatToolbarModule, MatIconModule, MatMenuModule, FormsModule, MatSlideToggleModule],
+      declarations: [ProfileComponent, NavbarComponent, ToogleComponent],
       providers: [MatDialog], 
 
     }).compileComponents();

@@ -113,7 +113,7 @@ h1 {
   .article-card {
     flex-basis: 300px;
     span {
-      width: 25%;
+      width: 33%;
       background: red;
       padding: 2px 9px;
       border-radius: 9px;
@@ -127,4 +127,17 @@ h1 {
 
 li {
   display: block !important;
+}
+
+mat-paginator {
+  display: flex;
+  justify-content: center;
+  border: 0.1px solid purple;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 5px;
+  box-shadow: 11px 8px 21px -10px purple;
+  margin-top: 25px;
+  margin-bottom: 30px;
 }

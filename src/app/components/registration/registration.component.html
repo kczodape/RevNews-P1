@@ -1,10 +1,16 @@
 <div class="head">
   <h1>Welcome to HotNews</h1>
 </div>
+<div class="toggle" style="    display: flex;
+justify-content: end;
+width: 95%;
+margin-top: 1%;">
+  <app-toogle></app-toogle>
+</div>
 <!-- <h1>Location: {{ lowerCaseCountry }}</h1> -->
 <div class="login">
   <div class="svg">
-    <img src="assets/reg_svg.svg" alt="" />
+    <img src="assets/reg_svg.svg" alt />
   </div>
   <div class="login_form">
     <h1>Sign Up</h1>
@@ -16,8 +22,7 @@
             type="text"
             id="firstName"
             formControlName="firstName"
-            placeholder="First name*"
-          />
+            placeholder="First name*" />
           <div class="validation" *ngIf="isFieldInvalid('firstName')">
             Please enter your first name !
           </div>
@@ -28,8 +33,7 @@
             type="text"
             id="lastName"
             formControlName="lastName"
-            placeholder="Last name*"
-          />
+            placeholder="Last name*" />
           <div class="validation" *ngIf="isFieldInvalid('lastName')">
             Please enter your last name !
           </div>
@@ -42,8 +46,7 @@
             type="text"
             id="age"
             formControlName="age"
-            placeholder="Age*"
-          />
+            placeholder="Age*" />
           <div class="validation" *ngIf="isFieldInvalid('age')">
             Please enter your age !
           </div>
@@ -54,8 +57,7 @@
             type="text"
             id="contactNumber"
             formControlName="contactNumber"
-            placeholder="Contact Number*"
-          />
+            placeholder="Contact Number*" />
           <div class="validation" *ngIf="isFieldInvalid('contactNumber')">
             Please enter your contact number !
           </div>
@@ -68,8 +70,7 @@
             type="email"
             id="email"
             formControlName="email"
-            placeholder="Email*"
-          />
+            placeholder="Email*" />
           <div class="validation" *ngIf="isFieldInvalid('email')">
             <ng-container *ngIf="isEmailExists()">
               Email ID already exists. Please enter a different email.
@@ -93,8 +94,7 @@
             type="password"
             id="password"
             formControlName="password"
-            placeholder="Password*"
-          />
+            placeholder="Password*" />
           <div class="validation" *ngIf="isFieldInvalid('password')">
             Please enter your password !
           </div>
@@ -105,8 +105,7 @@
             type="password"
             id="confirmPassword"
             formControlName="confirmPassword"
-            placeholder="Confirm password*"
-          />
+            placeholder="Confirm password*" />
           <div class="validation" *ngIf="isFieldInvalid('confirmPassword')">
             Please enter your confirm password !
           </div>

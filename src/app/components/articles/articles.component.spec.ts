@@ -4,6 +4,9 @@ import { ArticlesComponent } from './articles.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ToogleComponent } from '../toogle/toogle.component';
+import { FooterComponent } from '../footer/footer.component';
 
 describe('ArticlesComponent', () => {
   let component: ArticlesComponent;
@@ -11,8 +14,8 @@ describe('ArticlesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatPaginatorModule, BrowserAnimationsModule, HttpClientModule],
-      declarations: [ ArticlesComponent ]
+      imports: [MatSlideToggleModule, HttpClientTestingModule, MatPaginatorModule, BrowserAnimationsModule, HttpClientModule],
+      declarations: [ ArticlesComponent, ToogleComponent, FooterComponent ]
     })
     .compileComponents();
 

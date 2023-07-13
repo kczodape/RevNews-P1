@@ -4,6 +4,8 @@ import { ApolloTestingModule } from 'apollo-angular/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { GeolocationService } from 'src/app/services/geolocation.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ToogleComponent } from '../toogle/toogle.component';
 
 
 describe('RegistrationComponent', () => {
@@ -12,8 +14,8 @@ describe('RegistrationComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ApolloTestingModule, HttpClientTestingModule, ReactiveFormsModule], // Import ApolloTestingModule here
-      declarations: [ RegistrationComponent ],
+      imports: [MatSlideToggleModule, ApolloTestingModule, HttpClientTestingModule, ReactiveFormsModule], // Import ApolloTestingModule here
+      declarations: [ RegistrationComponent, ToogleComponent ],
       providers: [GeolocationService] // Add any other required providers
 
     })

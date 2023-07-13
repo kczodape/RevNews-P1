@@ -10,6 +10,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ToogleComponent } from '../toogle/toogle.component';
+import { FooterComponent } from '../footer/footer.component';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -17,8 +20,8 @@ describe('IndexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatToolbarModule, MatIconModule, MatMenuModule, MatPaginatorModule, FormsModule, MatFormFieldModule, BrowserAnimationsModule],
-      declarations: [ IndexComponent, NavbarComponent, ArticlesComponent ]
+      imports: [HttpClientTestingModule, MatToolbarModule, MatIconModule, MatMenuModule, MatPaginatorModule, FormsModule, MatFormFieldModule, BrowserAnimationsModule, MatSlideToggleModule],
+      declarations: [ FooterComponent, IndexComponent, NavbarComponent, ArticlesComponent, ToogleComponent ]
     })
     .compileComponents();
 

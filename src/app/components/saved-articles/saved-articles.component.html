@@ -1,4 +1,10 @@
-<h1>Saved Articles</h1><div class="article-grid">
+<h1>Saved Articles</h1> <div class="toggle" style="    display: flex;
+justify-content: end;
+width: 95%;
+margin-top: 1%;">
+  <app-toogle></app-toogle>
+</div><div class="article-grid">
+
   <div class="flex" *ngIf="savedArticles.length > 0; else noArticles">
 
     <div class="article-card" *ngFor="let article of savedArticles">

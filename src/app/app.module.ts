@@ -30,9 +30,15 @@ import { MatMenuModule } from '@angular/material/menu';
 // import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 // import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MatPaginatorModule } from '@angular/material/paginator'; // Import MatPaginatorModule
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatInputModule } from '@angular/material/input';
+import { MatNativeDateModule } from '@angular/material/core';
 import { ResetPasswordService } from './services/reset-password.service';
 import { SavedArticlesComponent } from './components/saved-articles/saved-articles.component';
 import { SessionService } from './services/session.service';
+import { FooterComponent } from './components/footer/footer.component';
+import { ToogleComponent } from './components/toogle/toogle.component';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 
 // export function HttpLoaderFactory(http: HttpClient) {
@@ -52,10 +58,15 @@ import { SessionService } from './services/session.service';
     ResetdialogComponent,
     UpdatedialogComponent,
     ArticlesComponent,
-    SavedArticlesComponent
+    SavedArticlesComponent,
+    FooterComponent,
+    ToogleComponent
   ],
   imports: [
     BrowserModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
@@ -76,6 +87,7 @@ import { SessionService } from './services/session.service';
     MatDialogModule,
     MatSelectModule,
     MatMenuModule,
+    MatSlideToggleModule
   ],
   providers: [ResetPasswordService, SessionService],
   bootstrap: [AppComponent],
