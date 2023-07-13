@@ -29,8 +29,8 @@ export class ResetPasswordService {
     const mutation = gql`
       mutation UpdateUser($id: ID!, $password: String!) {
         updateUser(id: $id, password: $password) {
+          id
           email
-          password
         }
       }
     `;

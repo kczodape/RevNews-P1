@@ -17,7 +17,7 @@ export class UpdatedialogComponent {
     private sessionService: SessionService,
     public dialogRef: MatDialogRef<UpdatedialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private apollo: Apollo
+    public apollo: Apollo
   ) {
     this.user = this.sessionService.getUser();
     this.formData = { ...data };

@@ -11,6 +11,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./resetdialog.component.scss'],
 })
 export class ResetdialogComponent {
+  Router(Router: any, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
+  ResetPasswordService(ResetPasswordService: any, arg1: string) {
+    throw new Error('Method not implemented.');
+  }
   email: string | any;
   user: any;
   dbPassword: string | any;
@@ -20,9 +26,9 @@ export class ResetdialogComponent {
   @ViewChild('resetForm', { static: false }) resetForm: NgForm | any;
 
   constructor(
-    private resetPasswordService: ResetPasswordService,
+    public resetPasswordService: ResetPasswordService,
     private sessionService: SessionService,
-    private router: Router,
+    public router: Router,
     public dialogRef: MatDialogRef<ResetdialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {

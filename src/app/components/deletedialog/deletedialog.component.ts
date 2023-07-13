@@ -11,6 +11,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./deletedialog.component.scss'],
 })
 export class DeletedialogComponent {
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  
   user: any;
 
   constructor(
@@ -43,4 +47,5 @@ export class DeletedialogComponent {
         }
       );
   }
+  
 }

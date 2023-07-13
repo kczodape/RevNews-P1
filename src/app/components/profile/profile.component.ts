@@ -22,6 +22,7 @@ export class ProfileComponent {
     public dialog: MatDialog
   ) {
     this.user = this.sessionService.getUser();
+    console.log('User object in ProfileComponent:', this.user);
   }
 
   // onDelete() {

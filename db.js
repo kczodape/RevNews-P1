@@ -7,7 +7,6 @@ module.exports = {
       age: "23",
       contactNumber: "8530278729",
       email: "ee18kczodapejd@gmail.com",
-      // country: "India",
       password: "Pass@1234",
     },
   ],

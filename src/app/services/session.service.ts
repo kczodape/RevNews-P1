@@ -10,6 +10,7 @@ export class SessionService {
   constructor() {}
 
   setUser(user: any): void {
+    console.log('User object:', user);
     this.user = user;
     sessionStorage.setItem('email', user?.email || '');
   }
