@@ -1,6 +1,7 @@
 <h1>HotNews - Top headlines from {{ category }} category {{ country }}</h1>
 <!-- <div id="google_translate_element"></div>
 <button (click)="googleTranslateElementInit()">click</button> -->
+<app-toogle></app-toogle>
 <div class="article-grid">
   <div class="article-card" *ngFor="let article of getPaginatedArticles()">
     <span>{{ article.source.name }}</span>
@@ -30,3 +31,5 @@
   [pageSize]="pageSize"
   [pageSizeOptions]="[5, 10, 25, 50]"
   (page)="onPageChanged($event.pageIndex)"></mat-paginator>
+
+  <app-footer></app-footer>
