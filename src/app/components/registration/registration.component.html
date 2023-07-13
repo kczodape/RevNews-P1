@@ -78,6 +78,9 @@
             <ng-container *ngIf="!isEmailExists() && isFieldInvalid('email')">
               Please enter your email!
             </ng-container>
+            <div *ngIf="isFieldInvalid('password')" [ngStyle]="{ 'color': 'red' }">
+              {{ getErrorMessage() }}
+            </div>  
           </div>
         </div>
         <!-- <div class="inpLabel">
