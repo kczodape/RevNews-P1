@@ -3,6 +3,7 @@ import { ArticleService } from 'src/app/services/article.service';
 import { SearchService } from 'src/app/services/search.service';
 import * as moment from 'moment';
 import { NewsService } from 'src/app/services/news.service';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 declare var google: any; // Declare the 'google' variable
 
@@ -20,6 +21,7 @@ export class ArticlesComponent implements OnInit {
   public category: string = '';
   public country: string | any;
 
+  public selectedDate: Date | any;
   public currentPage: number = 0;
   public pageSize: number = 5;
   public totalItems: number = 0;
@@ -28,6 +30,15 @@ export class ArticlesComponent implements OnInit {
     private articleService: ArticleService,
     private searchService: SearchService
   ) {}
+
+  // onDateSelected() {
+  //   if (this.selectedDate) {
+  //     this.articleService.getArticlesByDate(this.selectedDate).subscribe((data: any)=> {
+  //       this.articles = data.articles;
+  //       console.log('Fetched Articles:', this.articles);
+  //     })
+  //   }
+  // }
 
   ngOnInit() {
     // this.googleTranslateElementInit();
@@ -60,6 +71,12 @@ export class ArticlesComponent implements OnInit {
     this.searchService.getSearchKeyword().subscribe((keyword) => {
       this.searchKeyword = keyword;
       this.filterArticles();
+    });
+
+    // Subscribe to selectedDate changes
+    this.articleService.selectedDate$.subscribe((selectedDate) => {
+      this.selectedDate = selectedDate;
+      this.onDateSelected();
     });
 
     this.filterArticles();
@@ -141,6 +158,19 @@ export class ArticlesComponent implements OnInit {
 
   public onPageChanged(page: number): void {
     this.currentPage = page;
+  }
+
+  onDateSelected(): void {
+    if (this.selectedDate) {
+      const formattedDate = moment(this.selectedDate).format('YYYY-MM-DD');
+      this.articleService
+        .getEverything(formattedDate)
+        .subscribe((data: any) => {
+          this.articles = data.articles;
+          this.filterArticles();
+        });
+    }
+    console.log(this.selectedDate);
   }
 
   public googleTranslateElementInit() {

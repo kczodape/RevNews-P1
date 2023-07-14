@@ -16,13 +16,18 @@ export class ArticleService {
   // private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
   // private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
   // private apiKey = 'd6d78a72ad8e4504a0d049ca6f63b8a8';
+  // private apiKey = 'd6f7f658c7ad4a87a9d21757a90e803c';
   private apiUrl = 'https://newsapi.org/v2';
+  private apiUrlEverything = 'https://newsapi.org/v2/everything';
   private apiUrlArticle = 'http://localhost:3002/articles';
+
   private selectedCountrySubject = new BehaviorSubject<string>('us');
   private selectedCategorySubject = new BehaviorSubject<string>('general');
+  private selectedDateSubject = new BehaviorSubject<Date | null>(null);
 
   selectedCountry$ = this.selectedCountrySubject.asObservable();
   selectedCategory$ = this.selectedCategorySubject.asObservable();
+  selectedDate$ = this.selectedDateSubject.asObservable();
 
   setSelectedCountry(country: string) {
     this.selectedCountrySubject.next(country);
@@ -44,6 +49,10 @@ export class ArticleService {
     return this.selectedCategorySubject.value;
   }
 
+  setSelectedDate(date: Date | null){
+    this.selectedDateSubject.next(date);
+  }
+
   getCountries(): Observable<any> {
     const url = `${this.apiUrl}/sources?apiKey=${this.apiKey}`;
     return this.http.get(url);
@@ -54,10 +63,33 @@ export class ArticleService {
     return this.http.get(url);
   }
 
-  getArticles(country: string, category: string) {
+  private formatDate(date: string): string {
+    const selectedDate = new Date(date);
+    const year = selectedDate.getFullYear();
+    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
+    const day = String(selectedDate.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
+
+  getArticlesByDate(selectedDate: string): Observable<any> {
+    const formattedDate = this.formatDate(selectedDate);
+    const apiUrl = `${this.apiUrl}/everything?q=*&from=${formattedDate}&sortBy=publishedAt&apiKey=${this.apiKey}`;
+    return this.http.get(apiUrl);
+  }
+
+  
+
+  getArticles(country: string, category: string): Observable<any> {
     const url = `${this.apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${this.apiKey}`;
     return this.http.get(url);
   }
+
+  getEverything(date: string): Observable<any> {
+    const url = `${this.apiUrlEverything}?q=*&from=${date}&sortBy=publishedAt&apiKey=${this.apiKey}`;
+    return this.http.get(url);
+  }
+
+
   saveArticle(article: any): void {
     const userEmail = sessionStorage.getItem('email');
     const url = 'http://localhost:3002/articles';

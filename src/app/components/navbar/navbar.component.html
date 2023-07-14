@@ -1,7 +1,7 @@
 <mat-toolbar>
   <span routerLink="/index" class="pointer"><div class="twelve">
-    <h1>HotNews</h1>
-  </div></span>
+      <h1>HotNews</h1>
+    </div></span>
   <span class="example-spacer"></span>
   <div class="navbar">
     <div class="categories-list">
@@ -12,19 +12,17 @@
           [value]="category"
           [(ngModel)]="selectedCategory"
           (change)="onCategoryChange()"
-          id="{{ category }}"
-        />
+          id="{{ category }}" />
         <label [for]="category">{{ category }}</label>
       </div>
     </div>
     <label for="Select country" class="label">Select country:</label>
     <select
-      value=""
+      value
       [(ngModel)]="selectedCountry"
       (change)="onCountryChange()"
-      *ngIf="countries.length > 0"
-    >
-      <option value="" SELECTED>country</option>
+      *ngIf="countries.length > 0">
+      <option value SELECTED>country</option>
       <option *ngFor="let country of countries" [value]="country">
         {{ country }}
       </option>
@@ -34,15 +32,13 @@
       type="text"
       [(ngModel)]="searchQuery"
       (input)="performSearch()"
-      placeholder="Search..."
-    />
+      placeholder="Search..." />
     <button (click)="filterArticles()"><mat-icon>search</mat-icon></button>
   </div>
   <button
     mat-icon-button
     [matMenuTriggerFor]="menu"
-    aria-label="Example icon-button with a menu"
-  >
+    aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
