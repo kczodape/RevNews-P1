@@ -1,9 +1,6 @@
 * {
   font-family: Arial, Helvetica, sans-serif;
 }
-* {
-  overflow: hidden;
-}
 .nav {
   display: flex;
   justify-content: space-between;
@@ -329,7 +326,135 @@ button:hover .arrow:before {
     }
   }
 }
-//===================================================
+
+.whyus {
+  h1 {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: -15px;
+    padding-bottom: 30px;
+  }
+  p {
+    font: normal normal 100 27px/30px Roboto;
+    text-align: center;
+    color: black;
+  }
+  h1 {
+    text-align: center;
+    color: #f05e23;
+  }
+  .data{
+    .reason{
+      h1{
+        font-size: 38px;
+      }
+      p{
+        font-size: 28px;
+      }
+    }
+  }
+  .combine {
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+    .column {
+      width: 5px;
+      background-color: #f05e23;
+      height: 450px;
+      margin-top: auto;
+      margin-block: auto;
+      border-radius: 45%;
+    }
+  }
+}
+.articles {
+  background-color: #19212a;
+  h1 {
+    font-size: 50px;
+    font-weight: 500;
+    margin-bottom: -15px;
+    padding-top: 30px;
+  }
+  p {
+    font: normal normal 100 27px/30px Roboto;
+  }
+  h1,
+  p {
+    text-align: center;
+    color: #f05e23;
+  }
+
+  .section {
+    .sec {
+      .head {
+        display: flex;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        .subArticle {
+          display: flex;
+          justify-content: center;
+          background: white;
+          width: 70%;
+          margin-left: auto;
+          margin-right: auto;
+          padding: 3px 60px;
+          border-radius: 160px 0 0 15px;
+          margin-top: 15px;
+          margin-bottom: 25px;
+          .data {
+            width: 60%;
+            padding: 15px;
+            h1 {
+              font-size: 25px;
+              font-weight: 100;
+            }
+            p {
+              font-size: 20px;
+            }
+            h1,
+            p {
+              text-align: left;
+            }
+          }
+          .image {
+            // width: 30%;
+            // height: 80%;
+            margin-top: auto;
+            margin-bottom: auto;
+            border-radius: 85px 0 0 8px;
+            img {
+              height: 210px;
+              width: 250px;
+              box-shadow: 7px 7px 11px 7px;
+            }
+          }
+        }
+        h1 {
+          width: 30%;
+          margin-top: auto;
+          margin-bottom: auto;
+          img {
+            width: 60%;
+          }
+        }
+      }
+    }
+  }
+}
+
+footer {
+  background-color: #19212a;
+  color: white;
+  font-weight: 600;
+  text-align: center;
+  word-spacing: 8px;
+  padding: 15px;
+  font-size: 18px;
+}
+//========================================================================================================================================
+//========================================================================================================================================
+//========================================================================================================================================
 
 /* For extremely small screen devices (595px and below) */
 @media only screen and (max-width: 595px) {
@@ -359,7 +484,6 @@ button:hover .arrow:before {
       }
       p {
         font-size: 18px;
-       
       }
     }
     .svg {
@@ -391,14 +515,12 @@ button:hover .arrow:before {
   .container {
     flex-direction: column-reverse;
     .textFlow {
-      width: 98%;
       h1 {
         font-size: 2.5rem;
         line-height: 1.7;
       }
       p {
         font-size: 18px;
-       
       }
       button {
         font-size: 12px;
@@ -441,7 +563,6 @@ button:hover .arrow:before {
       }
       p {
         font-size: 18px;
-       
       }
       button {
         font-size: 22px;
@@ -476,7 +597,6 @@ button:hover .arrow:before {
   }
   .container {
     flex-direction: row;
-    margin-top: 25px;
     .textFlow {
       width: 98%;
       h1 {
@@ -485,7 +605,6 @@ button:hover .arrow:before {
       }
       p {
         font-size: 18px;
-       
       }
       button {
         font-size: 22px;
