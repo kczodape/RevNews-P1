@@ -21,8 +21,8 @@ export class ArticleService {
   private apiUrlEverything = 'https://newsapi.org/v2/everything';
   private apiUrlArticle = 'http://localhost:3002/articles';
 
-  private selectedCountrySubject = new BehaviorSubject<string>('us');
-  private selectedCategorySubject = new BehaviorSubject<string>('general');
+  private selectedCountrySubject = new BehaviorSubject<string>('');
+  private selectedCategorySubject = new BehaviorSubject<string>('');
   private selectedDateSubject = new BehaviorSubject<Date | null>(null);
 
   selectedCountry$ = this.selectedCountrySubject.asObservable();
@@ -71,12 +71,15 @@ export class ArticleService {
     return `${year}-${month}-${day}`;
   }
 
-  getArticlesByDate(selectedDate: string): Observable<any> {
-    const formattedDate = this.formatDate(selectedDate);
-    console.log(`formated date ${formattedDate}`);
-    const apiUrl = `${this.apiUrl}/everything?q=*&from=${formattedDate}&sortBy=publishedAt&apiKey=${this.apiKey}`;
-    return this.http.get(apiUrl);
-  }
+  // getArticlesByDate(selectedDate: string): Observable<any> {
+  //   const formattedDate = this.formatDate(selectedDate);
+  //   console.log(`formated date ${formattedDate}`);
+  //   // const apiUrl = `${this.apiUrl}/everything?q=*&from=${formattedDate}&to=2023-07-14&sortBy=popularity&apiKey=${this.apiKey}`;
+  //   const apiUrl = `https://newsapi.org/v2/everything?q=apple&from=2023-07-6&to=2023-07-14&sortBy=popularity&apiKey=d6f7f658c7ad4a87a9d21757a90e803c`;
+
+  //   // https://newsapi.org/v2/everything?q=apple&from=2023-07-6&to=2023-07-14&sortBy=popularity&apiKey=d6f7f658c7ad4a87a9d21757a90e803c
+  //   return this.http.get(apiUrl);
+  // }
 
   getArticles(country: string, category: string): Observable<any> {
     const url = `${this.apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${this.apiKey}`;
@@ -86,7 +89,7 @@ export class ArticleService {
   getEverything(date: string): Observable<any> {
     console.log("getEverything date"+date);
     
-    const url = `${this.apiUrlEverything}?q=*&from=${date}&sortBy=publishedAt&apiKey=${this.apiKey}`;
+    const url = `${this.apiUrlEverything}?q=*&from=${date}&sortBy=popularity&apiKey=${this.apiKey}`;
     return this.http.get(url);
   }
 
