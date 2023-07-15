@@ -4,6 +4,8 @@ import { SearchService } from 'src/app/services/search.service';
 import * as moment from 'moment';
 import { NewsService } from 'src/app/services/news.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
+import { MatDialog } from '@angular/material/dialog';
+import { SharepopupComponent } from '../sharepopup/sharepopup.component';
 
 declare var google: any; // Declare the 'google' variable
 
@@ -25,22 +27,17 @@ export class ArticlesComponent implements OnInit {
   public currentPage: number = 0;
   public pageSize: number = 5;
   public totalItems: number = 0;
-
+  public maxDate: Date | any;
   constructor(
     private articleService: ArticleService,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private dialog: MatDialog
   ) {}
 
-  // onDateSelected() {
-  //   if (this.selectedDate) {
-  //     this.articleService.getArticlesByDate(this.selectedDate).subscribe((data: any)=> {
-  //       this.articles = data.articles;
-  //       console.log('Fetched Articles:', this.articles);
-  //     })
-  //   }
-  // }
-
   ngOnInit() {
+    // Set the minimum date to today
+    this.maxDate = new Date();
+    this.maxDate.setHours(0, 0, 0, 0);
     // this.googleTranslateElementInit();
     this.articleService.selectedCountry$.subscribe((selectedCountry) => {
       this.country = selectedCountry;
@@ -162,10 +159,21 @@ export class ArticlesComponent implements OnInit {
 
   onDateSelected(): void {
     if (this.selectedDate) {
+      const today = new Date(); // Get today's date
+      today.setHours(0, 0, 0, 0); // Set the time to midnight
+  
+      // Disable future dates
+      if (this.selectedDate.getTime() > today.getTime()) {
+        this.selectedDate = null; // Reset the selected date
+        return;
+      }      
       const formattedDate = moment(this.selectedDate).format('YYYY-MM-DD');
+      console.log("formated"+formattedDate);
       this.articleService
         .getEverything(formattedDate)
         .subscribe((data: any) => {
+          console.log(data);
+          
           this.articles = data.articles;
           this.filterArticles();
         });
@@ -173,14 +181,22 @@ export class ArticlesComponent implements OnInit {
     console.log(this.selectedDate);
   }
 
-  public googleTranslateElementInit() {
-    new google.translate.TranslateElement(
-      { pageLanguage: 'en' },
-      'google_translate_element'
-    );
-  }
+  // public googleTranslateElementInit() {
+  //   new google.translate.TranslateElement(
+  //     { pageLanguage: 'en' },
+  //     'google_translate_element'
+  //   );
+  // }
   saveArticle(article: any): void {
     this.articleService.saveArticle(article);
     console.log('Article saved successfully!');
+  }
+  
+  openSharePopup(url: string){
+    const dialogRef = this.dialog.open(SharepopupComponent, {
+      width: '600px',
+      height: '500px',
+      data: { articleUrl: url }
+    });
   }
 }

@@ -12,10 +12,10 @@ export class ArticleService {
   filterArticles() {
     throw new Error('Method not implemented.');
   }
-  private apiKey = '';
+  // private apiKey = '';
   // private apiKey = '4179b0aaa9b243f6a2cae4686a986c39';
   // private apiKey = 'bbf4d1c813f544f591a622ec2b758a9f';
-  // private apiKey = 'd6d78a72ad8e4504a0d049ca6f63b8a8';
+  private apiKey = 'd6d78a72ad8e4504a0d049ca6f63b8a8';
   // private apiKey = 'd6f7f658c7ad4a87a9d21757a90e803c';
   private apiUrl = 'https://newsapi.org/v2';
   private apiUrlEverything = 'https://newsapi.org/v2/everything';
@@ -49,7 +49,7 @@ export class ArticleService {
     return this.selectedCategorySubject.value;
   }
 
-  setSelectedDate(date: Date | null){
+  setSelectedDate(date: Date | null) {
     this.selectedDateSubject.next(date);
   }
 
@@ -65,7 +65,7 @@ export class ArticleService {
 
   private formatDate(date: string): string {
     const selectedDate = new Date(date);
-    const year = selectedDate.getFullYear();
+    const year = String(selectedDate.getFullYear());
     const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
     const day = String(selectedDate.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
@@ -73,11 +73,10 @@ export class ArticleService {
 
   getArticlesByDate(selectedDate: string): Observable<any> {
     const formattedDate = this.formatDate(selectedDate);
+    console.log(`formated date ${formattedDate}`);
     const apiUrl = `${this.apiUrl}/everything?q=*&from=${formattedDate}&sortBy=publishedAt&apiKey=${this.apiKey}`;
     return this.http.get(apiUrl);
   }
-
-  
 
   getArticles(country: string, category: string): Observable<any> {
     const url = `${this.apiUrl}/top-headlines?country=${country}&category=${category}&apiKey=${this.apiKey}`;
@@ -85,10 +84,11 @@ export class ArticleService {
   }
 
   getEverything(date: string): Observable<any> {
+    console.log("getEverything date"+date);
+    
     const url = `${this.apiUrlEverything}?q=*&from=${date}&sortBy=publishedAt&apiKey=${this.apiKey}`;
     return this.http.get(url);
   }
-
 
   saveArticle(article: any): void {
     const userEmail = sessionStorage.getItem('email');

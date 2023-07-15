@@ -1,0 +1,121 @@
+.share-popup {
+.social-icons {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    button {
+      border: none;
+      background: white;
+      color: black;
+      outline: none;
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+      margin-bottom: auto;
+      font-size: 33px;
+      margin-right: 30px;
+      mat-icon {
+        height: 37px;
+        width: 53px;
+      }
+    }
+    .social {
+      display: flex;
+      justify-content: center;
+      margin-top: auto;
+      margin-bottom: auto;
+      font-size: 70px;
+      margin-right: 30px;
+    }
+  }
+}
+
+.fa-whatsapp {
+    color: #18f27a; /* Facebook icon color: blue */
+  }
+.fa-facebook {
+    color: #1877F2; /* Facebook icon color: blue */
+  }
+  
+  .fa-twitter {
+    color: #1DA1F2; /* Twitter icon color: light blue */
+  }
+  
+  .fa-google {
+    color: #DB4437; /* Google icon color: red */
+  }
+  
+  .fa-linkedin {
+    color: #2867B2; /* LinkedIn icon color: blue */
+  }
+  
+  .fa-youtube {
+    color: #FF0000; /* YouTube icon color: red */
+  }
+  
+  .fa-instagram {
+    color: #C13584; /* Instagram icon color: purple */
+  }
+  
+  .fa-pinterest {
+    color: #BD081C; /* Pinterest icon color: red */
+  }
+  
+  .fa-snapchat {
+    color: #FFFC00; /* Snapchat icon color: yellow */
+  }
+  
+  .fa-skype {
+    color: #00AFF0; /* Skype icon color: blue */
+  }
+  
+  .fa-android {
+    color: #3DDC84; /* Android icon color: green */
+  }
+  
+  .fa-dribbble {
+    color: #EA4C89; /* Dribbble icon color: pink */
+  }
+  
+  .fa-vimeo {
+    color: #1AB7EA; /* Vimeo icon color: light blue */
+  }
+  
+  .fa-tumblr {
+    color: #35465C; /* Tumblr icon color: dark blue */
+  }
+  
+  .fa-vine {
+    color: #00B488; /* Vine icon color: green */
+  }
+  
+  .fa-foursquare {
+    color: #F94877; /* Foursquare icon color: pink */
+  }
+  
+  .fa-stumbleupon {
+    color: #EB4924; /* StumbleUpon icon color: orange */
+  }
+  
+  .fa-flickr {
+    color: #FF0084; /* Flickr icon color: pink */
+  }
+  
+  .fa-yahoo {
+    color: #6001D2; /* Yahoo icon color: purple */
+  }
+  
+  .fa-soundcloud {
+    color: #FF5500; /* SoundCloud icon color: orange */
+  }
+  
+  .fa-reddit {
+    color: #FF4500; /* Reddit icon color: orange */
+  }
+  
+  .fa-rss {
+    color: #FFA500; /* RSS icon color: orange */
+  }
+  

@@ -1,6 +1,6 @@
 <h1>HotNews - Top headlines from {{ category }} category {{ country }}</h1>
-<!-- <div id="google_translate_element"></div>
-<button (click)="googleTranslateElementInit()">click</button> -->
+<div id="google_translate_element"></div>
+<!-- <button (click)="googleTranslateElementInit()">change language</button> -->
 <div class="toggle" style="    display: flex;
 justify-content: end;
 width: 95%;
@@ -9,27 +9,30 @@ margin-top: 1%;">
 </div>
 <mat-form-field>
   <mat-label>Select Date</mat-label>
-  <input matInput [matDatepicker]="picker" [(ngModel)]="selectedDate" name="selectedDate">
+  <input matInput [matDatepicker]="picker" [max]="maxDate"
+    [(ngModel)]="selectedDate" name="selectedDate">
   <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
   <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
-
 <button mat-button (click)="onDateSelected()">Filter</button>
 <div class="article-grid">
-  <div class="article-card" *ngFor="let article of getPaginatedArticles() || articles">
+  <div class="article-card"
+    *ngFor="let article of getPaginatedArticles() || articles">
     <span>{{ article.source.name }}</span>
     <img *ngIf="article.urlToImage" [src]="article.urlToImage"
       alt="Article Image" />
     <img *ngIf="!article.urlToImage" src="assets/no_img.jpg" alt="Default Image" />
     <div class="article-content">
       <h2 class="article-title">{{ truncateTitle(article.title, 5) }}</h2>
-      <p>Date: {{ formatDate(article.date) }}</p>
+      <p>Date: {{ formatDate(article.publishedAt) }}</p>
       <p>Author: {{ article.author || 'Unknown' }}</p>
       <p class="article-description">{{ truncateDescription(article.description,
         10) }}</p>
       <div class="btns">
         <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
         <a class="button ghost" (click)="saveArticle(article)"><mat-icon>save_alt</mat-icon>
+        </a>
+        <a class="button ghost" (click)="openSharePopup(article.url)"><mat-icon>share</mat-icon>
         </a>
       </div>
       <!-- <a class="read-more-btn save-news-btn" (click)="saveArticle(article)">Save</a> -->

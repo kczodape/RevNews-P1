@@ -8,6 +8,6 @@ export class GeolocationService {
   constructor(private http: HttpClient) {}
   // https://ipapi.co/json/
   getLocation() {
-    return this.http.get('  ');
+    return this.http.get('https://ipapi.co/json/');
   }
 }

@@ -1,3 +1,4 @@
+import { SharepopupComponent } from './components/sharepopup/sharepopup.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -40,7 +41,7 @@ import { SessionService } from './services/session.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { ToogleComponent } from './components/toogle/toogle.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // export function HttpLoaderFactory(http: HttpClient) {
 //   return new TranslateHttpLoader(http);
@@ -61,7 +62,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     ArticlesComponent,
     SavedArticlesComponent,
     FooterComponent,
-    ToogleComponent
+    ToogleComponent,
+    SharepopupComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     AppRoutingModule,
     GraphQLModule,
     HttpClientModule,
-    MatPaginatorModule ,
+    MatPaginatorModule,
     // TranslateModule.forRoot({
     //   loader:{
     //     provide: TranslateLoader,
@@ -89,7 +91,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatSelectModule,
     MatMenuModule,
     MatSlideToggleModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatSnackBarModule
   ],
   providers: [ResetPasswordService, SessionService],
   bootstrap: [AppComponent],
