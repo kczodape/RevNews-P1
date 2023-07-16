@@ -7,7 +7,7 @@
   <span class="example-spacer"></span>
   <div class="navbar">
     <mat-form-field appearance="fill">
-      <mat-label style="color: black;">Select country:</mat-label>
+      <mat-label style="color: black;">Country</mat-label>
       <mat-select [(ngModel)]="selectedCountry" (selectionChange)="onCountryChange()">
         <mat-option value="" disabled>Select country</mat-option>
         <mat-option *ngFor="let country of countries" [value]="country">
@@ -16,7 +16,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label style="color: black;">Select category:</mat-label>
+      <mat-label style="color: black;">Category</mat-label>
       <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange()">
         <mat-option value="" disabled>Select category</mat-option>
         <mat-option *ngFor="let category of categories" [value]="category">
