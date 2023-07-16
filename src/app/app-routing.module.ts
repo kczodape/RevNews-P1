@@ -12,8 +12,8 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
-  { path: 'index', component: IndexComponent, canActivate: [AuthGuard] },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'index', component: IndexComponent},
+  { path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
   { path: 'saved-articles', component: SavedArticlesComponent }, // {path: '**', redirectTo: ''},
 ];
 

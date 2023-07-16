@@ -13,6 +13,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { ToogleComponent } from '../toogle/toogle.component';
 import { FooterComponent } from '../footer/footer.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -20,10 +24,29 @@ describe('IndexComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatToolbarModule, MatIconModule, MatMenuModule, MatPaginatorModule, FormsModule, MatFormFieldModule, BrowserAnimationsModule, MatSlideToggleModule],
-      declarations: [ FooterComponent, IndexComponent, NavbarComponent, ArticlesComponent, ToogleComponent ]
-    })
-    .compileComponents();
+      imports: [
+        HttpClientTestingModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatMenuModule,
+        MatPaginatorModule,
+        FormsModule,
+        MatFormFieldModule,
+        BrowserAnimationsModule,
+        MatSlideToggleModule,
+        MatDialogModule,
+        MatDatepickerModule, 
+        MatInputModule,
+        MatNativeDateModule
+      ],
+      declarations: [
+        FooterComponent,
+        IndexComponent,
+        NavbarComponent,
+        ArticlesComponent,
+        ToogleComponent,
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(IndexComponent);
     component = fixture.componentInstance;

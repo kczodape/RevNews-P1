@@ -6,6 +6,9 @@ import { NewsService } from 'src/app/services/news.service';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
 import { SharepopupComponent } from '../sharepopup/sharepopup.component';
+import { AuthGuard } from 'src/app/auth.guard';
+import { SessionService } from 'src/app/services/session.service';
+import { Router } from '@angular/router';
 
 declare var google: any; // Declare the 'google' variable
 
@@ -22,6 +25,7 @@ export class ArticlesComponent implements OnInit {
   public searchQuery: string = '';
   public category: string = '';
   public country: string | any;
+  isLoggedIn: boolean = false;
 
   public selectedDate: Date | any;
   public currentPage: number = 0;
@@ -31,10 +35,13 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private articleService: ArticleService,
     private searchService: SearchService,
-    private dialog: MatDialog
+    private sessionService: SessionService,
+    private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.isLoggedIn = this.sessionService.isLoggedIn;
     // Set the minimum date to today
     this.maxDate = new Date();
     this.maxDate.setHours(0, 0, 0, 0);
@@ -161,19 +168,19 @@ export class ArticlesComponent implements OnInit {
     if (this.selectedDate) {
       const today = new Date(); // Get today's date
       today.setHours(0, 0, 0, 0); // Set the time to midnight
-  
+
       // Disable future dates
       if (this.selectedDate.getTime() > today.getTime()) {
         this.selectedDate = null; // Reset the selected date
         return;
-      }      
+      }
       const formattedDate = moment(this.selectedDate).format('YYYY-MM-DD');
-      console.log("formated"+formattedDate);
+      console.log('formated' + formattedDate);
       this.articleService
         .getEverything(formattedDate)
         .subscribe((data: any) => {
           console.log(data);
-          
+
           this.articles = data.articles;
           this.filterArticles();
         });
@@ -188,15 +195,23 @@ export class ArticlesComponent implements OnInit {
   //   );
   // }
   saveArticle(article: any): void {
-    this.articleService.saveArticle(article);
-    console.log('Article saved successfully!');
+    if (this.isLoggedIn) {
+      this.articleService.saveArticle(article);
+      console.log('Article saved successfully!');
+    } else {
+    this.router.navigateByUrl('/login');
+    }
   }
-  
-  openSharePopup(url: string){
-    const dialogRef = this.dialog.open(SharepopupComponent, {
-      width: '600px',
-      height: '500px',
-      data: { articleUrl: url }
-    });
+
+  openSharePopup(url: string) {
+    if (this.isLoggedIn) {
+      const dialogRef = this.dialog.open(SharepopupComponent, {
+        width: '600px',
+        height: '500px',
+        data: { articleUrl: url },
+      });
+    } else {
+    this.router.navigateByUrl('/login');
+    }
   }
 }

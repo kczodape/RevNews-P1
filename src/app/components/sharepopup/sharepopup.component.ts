@@ -12,7 +12,7 @@ export class SharepopupComponent {
 
   constructor(
     private snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: { articleUrl: string }
+    @Inject(MAT_DIALOG_DATA) public data: { articleUrl: string },
   ) {
     this.articleUrl = data.articleUrl;
   }

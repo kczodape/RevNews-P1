@@ -1,21 +1,20 @@
-<h1>HotNews - Top headlines from {{ category }} category {{ country }}</h1>
+`<h1>HotNews - Top headlines from {{ category }} category {{ country }}</h1>
 <div id="google_translate_element"></div>
 <!-- <button (click)="googleTranslateElementInit()">change language</button> -->
-<div class="toggle" style="    display: flex;
-justify-content: end;
-width: 95%;
-margin-top: 1%;">
-  <app-toogle></app-toogle>
+<div class="functionality" style="display: flex; justify-content: space-between; padding: 0 25px; flex-direction: row-reverse;">
+  <div class="toggle">
+    <app-toogle></app-toogle>
+  </div>
+  <mat-form-field>
+    <mat-label>Select Date</mat-label>
+    <input matInput [matDatepicker]="picker" [max]="maxDate"
+      [(ngModel)]="selectedDate" (ngModelChange)="onDateSelected()"
+      name="selectedDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 </div>
-<mat-form-field>
-  <mat-label>Select Date</mat-label>
-  <input matInput [matDatepicker]="picker" [max]="maxDate"
-    [(ngModel)]="selectedDate" name="selectedDate">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker></mat-datepicker>
-</mat-form-field>
-<button mat-button (click)="onDateSelected()"><mat-icon>search</mat-icon>
-</button>
+
 <div class="article-grid">
   <div class="article-card"
     *ngFor="let article of getPaginatedArticles() || articles">
@@ -24,16 +23,19 @@ margin-top: 1%;">
       alt="Article Image" />
     <img *ngIf="!article.urlToImage" src="assets/no_img.jpg" alt="Default Image" />
     <div class="article-content">
-      <h2 class="article-title">{{ truncateTitle(article.title, 5) }}</h2>
+      <a [href]="article.url" class="article-title" target="_blank">{{
+        truncateTitle(article.title, 5) }}</a>
       <p>Date: {{ formatDate(article.publishedAt) }}</p>
       <p>Author: {{ article.author || 'Unknown' }}</p>
       <p class="article-description">{{ truncateDescription(article.description,
         10) }}</p>
       <div class="btns">
         <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
-        <a class="button ghost" (click)="saveArticle(article)"><mat-icon>save_alt</mat-icon>
+        <a class="button ghost" (click)="saveArticle(article)"
+          *ngIf="isLoggedIn || !isLoggedIn"><mat-icon>save_alt</mat-icon>
         </a>
-        <a class="button ghost" (click)="openSharePopup(article.url)"><mat-icon>share</mat-icon>
+        <a class="button ghost" (click)="openSharePopup(article.url)"
+          *ngIf="isLoggedIn || !isLoggedIn"><mat-icon>share</mat-icon>
         </a>
       </div>
       <!-- <a class="read-more-btn save-news-btn" (click)="saveArticle(article)">Save</a> -->

@@ -113,7 +113,7 @@ h1 {
         .button.ghost {
           color: red;
         }
-      
+
         .button.ghost:hover {
           cursor: pointer;
           background: red;
@@ -128,5 +128,39 @@ h1 {
   width: 49%;
   img {
     width: 30vw;
+  }
+}
+
+/* For extremely small screen devices (595px and below) */
+@media only screen and (max-width: 595px) {
+  .main {
+    .left {
+      width: 100%;
+    }
+    .right {
+      display: none;
+    }
+  }
+}
+
+/* Small screen devices (595px and above) */
+@media only screen and (min-width: 595px) {
+  .right {
+    display: none;
+  }
+}
+
+/* Medium screen devices (768px and above) */
+@media only screen and (min-width: 768px) {
+}
+
+/* Big screen devices (889px and above) */
+@media only screen and (min-width: 889px) {
+}
+
+/* Extra big screen devices (1200px and above) */
+@media only screen and (min-width: 1000px) {
+  .right {
+    display: block;
   }
 }
