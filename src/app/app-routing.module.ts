@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'index', component: IndexComponent},
   { path: 'profile', component: ProfileComponent,  canActivate: [AuthGuard] },
-  { path: 'saved-articles', component: SavedArticlesComponent }, // {path: '**', redirectTo: ''},
+  { path: 'saved-articles', component: SavedArticlesComponent,  canActivate: [AuthGuard] }, // {path: '**', redirectTo: ''},
 ];
 
 @NgModule({

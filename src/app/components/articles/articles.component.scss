@@ -65,13 +65,14 @@ h1 {
 }
 
 .article-content {
+  margin-top: 15px;
   flex: 1;
 }
 
 .article-title {
   text-decoration: none;
   font-size: 18px;
-  font-weight: 400;
+  font-weight: 450;
   margin: 5px 0 5px 0;
   color: black;
   &:hover {

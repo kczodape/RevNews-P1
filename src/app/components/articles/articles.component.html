@@ -1,6 +1,4 @@
-`<h1>HotNews - Top headlines from {{ category }} category {{ country }}</h1>
-<div id="google_translate_element"></div>
-<!-- <button (click)="googleTranslateElementInit()">change language</button> -->
+`<h1>HotNews - Top headlines from {{ category }} category {{ getFullCountryName(country) }}</h1>
 <div class="functionality" style="display: flex; justify-content: space-between; padding: 0 25px; flex-direction: row-reverse;">
   <div class="toggle">
     <app-toogle></app-toogle>
@@ -32,7 +30,7 @@
       <div class="btns">
         <a class="read-more-btn" [href]="article.url" target="_blank">Read More</a>
         <a class="button ghost" (click)="saveArticle(article)"
-          *ngIf="isLoggedIn || !isLoggedIn"><mat-icon>save_alt</mat-icon>
+          *ngIf="isLoggedIn || !isLoggedIn"><mat-icon>save</mat-icon>
         </a>
         <a class="button ghost" (click)="openSharePopup(article.url)"
           *ngIf="isLoggedIn || !isLoggedIn"><mat-icon>share</mat-icon>

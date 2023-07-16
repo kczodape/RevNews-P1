@@ -1,44 +1,41 @@
 <mat-toolbar>
-  <span routerLink="/" class="pointer"><div class="twelve">
+  <span routerLink="/" class="pointer">
+    <div class="twelve">
       <h1>HotNews</h1>
-    </div></span>
+    </div>
+  </span>
   <span class="example-spacer"></span>
   <div class="navbar">
-    <div class="categories-list">
-      <div class="category-item" *ngFor="let category of categories">
-        <input
-          type="radio"
-          name="selectedCategory"
-          [value]="category"
-          [(ngModel)]="selectedCategory"
-          (change)="onCategoryChange()"
-          id="{{ category }}" />
-        <label [for]="category">{{ category }}</label>
-      </div>
-    </div>
-    <label for="Select country" class="label">Select country:</label>
-    <select
-      value
-      [(ngModel)]="selectedCountry"
-      (change)="onCountryChange()"
-      *ngIf="countries.length > 0">
-      <option value SELECTED>country</option>
-      <option *ngFor="let country of countries" [value]="country">
-        {{ country }}
-      </option>
-    </select>
-
-    <input
-      type="text"
-      [(ngModel)]="searchQuery"
-      (input)="performSearch()"
-      placeholder="Search..." />
-    <button (click)="filterArticles()"><mat-icon>search</mat-icon></button>
+    <mat-form-field appearance="fill">
+      <mat-label style="color: black;">Select country:</mat-label>
+      <mat-select [(ngModel)]="selectedCountry" (selectionChange)="onCountryChange()">
+        <mat-option value="" disabled>Select country</mat-option>
+        <mat-option *ngFor="let country of countries" [value]="country">
+          {{ getCountryFullName(country) }} <!-- Display full name of the country -->
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label style="color: black;">Select category:</mat-label>
+      <mat-select [(ngModel)]="selectedCategory" (selectionChange)="onCategoryChange()">
+        <mat-option value="" disabled>Select category</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{ capitalizeCategory(category) }} <!-- Capitalize the category -->
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <input
+        matInput
+        type="text"
+        [(ngModel)]="searchQuery"
+        (input)="performSearch()"
+        placeholder="Search..."
+      />
+      <mat-icon matSuffix style="color: black;">search</mat-icon>
+    </mat-form-field>
   </div>
-  <button
-    mat-icon-button
-    [matMenuTriggerFor]="menu"
-    aria-label="Example icon-button with a menu">
+  <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu">
@@ -57,15 +54,4 @@
       <span>Saved news</span>
     </button>
   </mat-menu>
-  <!-- 
-  <div *ngIf="sessionService.isLoggedIn">
-    <button (click)="logout()" mat-raised-button color="warn">
-      <mat-icon>logout</mat-icon>
-      Logout
-    </button>
-  </div>
-  <button mat-raised-button routerLink="/profile">
-    <mat-icon>person</mat-icon>
-    Profile
-  </button> -->
 </mat-toolbar>

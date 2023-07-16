@@ -9,6 +9,7 @@ import { SharepopupComponent } from '../sharepopup/sharepopup.component';
 import { AuthGuard } from 'src/app/auth.guard';
 import { SessionService } from 'src/app/services/session.service';
 import { Router } from '@angular/router';
+import { GeolocationService } from 'src/app/services/geolocation.service';
 
 declare var google: any; // Declare the 'google' variable
 
@@ -32,15 +33,59 @@ export class ArticlesComponent implements OnInit {
   public pageSize: number = 5;
   public totalItems: number = 0;
   public maxDate: Date | any;
+  geoLocation: any;
+  public lowerCaseCountry: String | any;
+
+  countries: { code: string; name: string }[] = [
+    { code: 'us', name: 'United States' },
+    { code: 'au', name: 'Australia' },
+    { code: 'no', name: 'Norway' },
+    { code: 'it', name: 'Italy' },
+    { code: 'sa', name: 'Saudi Arabia' },
+    { code: 'pk', name: 'Pakistan' },
+    { code: 'gb', name: 'United Kingdom' },
+    { code: 'de', name: 'Germany' },
+    { code: 'br', name: 'Brazil' },
+    { code: 'ca', name: 'Canada' },
+    { code: 'es', name: 'Spain' },
+    { code: 'ar', name: 'Argentina' },
+    { code: 'fr', name: 'France' },
+    { code: 'in', name: 'India' },
+    { code: 'is', name: 'Iceland' },
+    { code: 'ru', name: 'Russia' },
+    { code: 'se', name: 'Sweden' },
+    { code: 'za', name: 'South Africa' },
+    { code: 'ie', name: 'Ireland' },
+    { code: 'nl', name: 'Netherlands' },
+    { code: 'zh', name: 'China' },
+    // Add more countries as needed
+  ];
+
+  // ... (existing class properties and methods)
+
+  // Function to get the full country name in capital letters
+  public getFullCountryName(countryCode: string): string {
+    const countryInfo = this.countries.find((country) => country.code === countryCode);
+    return countryInfo ? countryInfo.name.toUpperCase() : '';
+  }
+  
   constructor(
     private articleService: ArticleService,
     private searchService: SearchService,
     private sessionService: SessionService,
     private dialog: MatDialog,
+    private geoLocationService: GeolocationService,
     private router: Router
   ) {}
 
   ngOnInit() {
+    this.geoLocationService.getLocation().subscribe((response) => {
+      console.log(response);
+      this.geoLocation = response;
+      this.lowerCaseCountry = this.geoLocation?.country.toLowerCase();
+      sessionStorage.setItem('selectedCountry', this.lowerCaseCountry);
+      this.articleService.setSelectedCountry(this.lowerCaseCountry);
+    });
     this.isLoggedIn = this.sessionService.isLoggedIn;
     // Set the minimum date to today
     this.maxDate = new Date();
@@ -87,29 +132,35 @@ export class ArticlesComponent implements OnInit {
   }
 
   fetchArticles(country: string, category: string) {
-    this.articleService
-      .getArticles(country, category)
+    this.articleService.getArticles(country, category)
       .subscribe((data: any) => {
         this.articles = data.articles;
-        this.filterArticles();
+        this.filterArticles(); // Update filteredArticles after fetching data
       });
   }
+  
 
   filterArticles() {
-    if (this.searchKeyword) {
-      this.filteredArticles = this.articles.filter((article) =>
-        article.title.toLowerCase().includes(this.searchKeyword.toLowerCase())
-      );
-    } else {
-      this.filteredArticles = this.articles;
-    }
+     // Apply the filtering logic based on the search keyword
+  if (this.searchKeyword) {
+    this.filteredArticles = this.articles.filter((article) =>
+      article.title.toLowerCase().includes(this.searchKeyword.toLowerCase())
+    );
+  } else {
+    this.filteredArticles = this.articles;
+  }
 
-    this.totalItems = this.filteredArticles.length;
+  // Reset the current page to 0 when articles change or search keyword is updated
+  this.currentPage = 0;
+
+  // Update the totalItems with the new filtered articles
+  this.totalItems = this.filteredArticles.length;
   }
 
   getPaginatedArticles(): any[] {
     const startIndex = this.currentPage * this.pageSize;
-    return this.filteredArticles.slice(startIndex, startIndex + this.pageSize);
+    const endIndex = startIndex + this.pageSize;
+    return this.filteredArticles.slice(startIndex, endIndex);
   }
 
   formatDate(dateString: string): string {

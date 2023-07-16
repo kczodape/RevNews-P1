@@ -70,7 +70,14 @@ mat-toolbar {
 }
 .navbar {
   display: flex;
-  width: 78%;
+  justify-content: space-evenly;
+  mat-form-field{
+    width: 23%;
+    margin-bottom: -15px;
+    .mat-mdc-text-field-wrapper{
+      background-color: #19212a;
+    }
+  }
   .categories-list {
     display: flex;
     align-self: center;

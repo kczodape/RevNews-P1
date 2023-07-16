@@ -51,6 +51,7 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/login');
     window.location.reload();
   }
+
   fetchCountries() {
     this.articleService.getCountries().subscribe((data: any) => {
       const uniqueCountries = [
@@ -80,10 +81,46 @@ export class NavbarComponent implements OnInit {
     console.log('Selected Category:', this.selectedCategory);
     this.articleService.setSelectedCategory(this.selectedCategory);
   }
+
   filterArticles() {
     this.searchService.setSearchKeyword(this.searchKeyword);
   }
+
   public performSearch() {
     this.searchService.setSearchKeyword(this.searchQuery);
+  }
+
+  // Helper method to get the full name of the country
+  getCountryFullName(countryCode: string): string {
+    // Replace this object with the full list of country codes and names
+    const countryList: { [key: string]: string } = {
+      us: 'United States',
+      au: 'Australia',
+      no: 'Norway',
+      it: 'Italy',
+      sa: 'Saudi Arabia',
+      pk: 'Pakistan',
+      gb: 'United Kingdom',
+      de: 'Germany',
+      br: 'Brazil',
+      ca: 'Canada',
+      es: 'Spain',
+      ar: 'Argentina',
+      fr: 'France',
+      in: 'India',
+      is: 'Iceland',
+      ru: 'Russia',
+      se: 'Sweden',
+      za: 'South Africa',
+      ie: 'Ireland',
+      nl: 'Netherlands',
+      zh: 'China',
+    };
+    return countryList[countryCode] || '';
+  }
+
+  // Helper method to capitalize the category
+  capitalizeCategory(category: string): string {
+    return category.charAt(0).toUpperCase() + category.slice(1);
   }
 }
