@@ -36,12 +36,26 @@ export class RegistrationComponent implements OnInit {
         contactNumber: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         // country: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6)]],
+        password: ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/),]],
         confirmPassword: ['', Validators.required],
       },
       { validators: this.passwordMatchValidator }
     );
   }
+
+  getErrorMessage(): string {
+    const passwordControl = this.registrationForm.get('password');
+    if (passwordControl?.hasError('required')) {
+      return 'Password is required';
+    }
+    if (passwordControl?.hasError('minlength')) {
+      return 'Password should be at least 6 characters long';
+    }
+    if (passwordControl?.hasError('pattern')) {
+      return 'Password should contain at least one capital letter, one small letter, one number, and one special character';
+    }
+    return '';
+  }
 
   ngOnInit(): void {
     this.geoLocationService.getLocation().subscribe((response) => {

@@ -97,6 +97,10 @@ margin-top: 1%;">
           <div class="validation" *ngIf="isFieldInvalid('password')">
             Please enter your password !
           </div>
+
+          <div *ngIf="isFieldInvalid('password')" [ngStyle]="{ 'color': 'red', 'font-size':'11px' }">
+            {{ getErrorMessage() }}
+          </div>
         </div>
         <div class="inpLabel">
           <label for="confirmPassword">Re-enter password</label>

@@ -17,6 +17,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSelectModule } from '@angular/material/select';
 
 describe('IndexComponent', () => {
   let component: IndexComponent;
@@ -37,7 +38,8 @@ describe('IndexComponent', () => {
         MatDialogModule,
         MatDatepickerModule, 
         MatInputModule,
-        MatNativeDateModule
+        MatNativeDateModule,
+        MatSelectModule
       ],
       declarations: [
         FooterComponent,

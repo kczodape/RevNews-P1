@@ -70,12 +70,12 @@ export class ArticlesComponent implements OnInit {
   }
   
   constructor(
-    private articleService: ArticleService,
-    private searchService: SearchService,
-    private sessionService: SessionService,
-    private dialog: MatDialog,
-    private geoLocationService: GeolocationService,
-    private router: Router
+    public articleService: ArticleService,
+    public searchService: SearchService,
+    public sessionService: SessionService,
+    public dialog: MatDialog,
+    public geoLocationService: GeolocationService,
+    public router: Router
   ) {}
 
   ngOnInit() {
