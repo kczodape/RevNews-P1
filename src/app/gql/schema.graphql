@@ -1,7 +1,0 @@
-type Mutation {
-  resetPassword(
-    email: String!
-    oldPassword: String!
-    newPassword: String!
-  ): User
-}
