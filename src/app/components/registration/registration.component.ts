@@ -20,7 +20,7 @@ export class RegistrationComponent implements OnInit {
   alertMessage: string = '';
   geoLocation: any;
   public lowerCaseCountry: String | any;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private apollo: Apollo,
@@ -36,7 +36,7 @@ export class RegistrationComponent implements OnInit {
         contactNumber: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
         // country: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6),Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/),]],
+        password: ['', [Validators.required, Validators.minLength(6), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/),]],
         confirmPassword: ['', Validators.required],
       },
       { validators: this.passwordMatchValidator }
@@ -54,8 +54,8 @@ export class RegistrationComponent implements OnInit {
     if (passwordControl?.hasError('pattern')) {
       return 'Password should contain at least one capital letter, one small letter, one number, and one special character';
     }
-    return '';
-  }
+    return '';
+  }
 
   ngOnInit(): void {
     this.geoLocationService.getLocation().subscribe((response) => {
@@ -106,7 +106,7 @@ export class RegistrationComponent implements OnInit {
     const emailControl: AbstractControl | null =
       this.registrationForm.get('email');
     const email: string = emailControl?.value;
-    const emailExists = false; 
+    const emailExists = false;
     return emailExists;
   }
 

@@ -258,7 +258,7 @@ export class ArticlesComponent implements OnInit {
     if (this.isLoggedIn) {
       const dialogRef = this.dialog.open(SharepopupComponent, {
         width: '600px',
-        height: '500px',
+        height: '350px',
         data: { articleUrl: url },
       });
     } else {
